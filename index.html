@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nombre & Nombre — Nuestra Boda</title>
+  <meta name="description" content="Toda la información para el gran día: horarios, lugar, confirmación de asistencia, regalos y preguntas frecuentes." />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Nombre & Nombre — Nuestra Boda" />
+  <meta property="og:description" content="Toda la información para el gran día: horarios, lugar, confirmación de asistencia, regalos y preguntas frecuentes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="img/hero.jpg" />
+  <meta property="og:locale" content="es_ES" />
+
+  <!-- Google Fonts (opcional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #fffdf8;
+      --ink: #1d1b16;
+      --muted: #6b6b6b;
+      --brand: #3a8f7a;
+      --brand-2: #e6b8a2;
+      --card: #ffffff;
+      --shadow: 0 8px 30px rgba(0,0,0,.08);
+      --radius: 18px;
+      --maxw: 1100px;
+    }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    a{color:var(--brand);text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+    .container{max-width:var(--maxw);padding:0 20px;margin:0 auto}
+    .nav{position:sticky;top:0;background:rgba(255,253,248,.8);backdrop-filter:saturate(120%) blur(8px);border-bottom:1px solid #eee;z-index:50}
+    .nav .inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.5px}
+    .nav a{margin-left:18px;font-weight:500}
+
+    .hero{position:relative;display:grid;place-items:center;text-align:center;padding:88px 20px 72px;background:linear-gradient(180deg, #ffffff 0%, #fff7f0 100%)}
+    .hero h1{font-family:"Playfair Display",serif;font-size: clamp(36px, 6vw, 64px);margin:0 0 12px}
+    .hero p{margin:0;color:var(--muted);font-size: clamp(16px,2.6vw,20px)}
+    .date-pill{display:inline-block;margin-top:18px;background:var(--brand);color:white;padding:10px 16px;border-radius:999px;font-weight:600}
+    .countdown{display:flex;gap:14px;justify-content:center;margin-top:28px}
+    .cd-card{background:var(--card);box-shadow:var(--shadow);border-radius:var(--radius);padding:14px 18px;min-width:74px}
+    .cd-card strong{display:block;font-size:20px}
+    .cd-card span{font-size:12px;color:var(--muted)}
+
+    section{padding:72px 0}
+    .card{background:var(--card);box-shadow:var(--shadow);border-radius:var(--radius);padding:28px}
+    .grid{display:grid;gap:22px}
+    @media(min-width:900px){
+      .grid-2{grid-template-columns:1fr 1fr}
+      .grid-3{grid-template-columns:repeat(3,1fr)}
+    }
+
+    h2{font-family:"Playfair Display",serif;font-size: clamp(28px,4vw,40px);margin:0 0 12px}
+    .muted{color:var(--muted)}
+    .btn{display:inline-block;background:var(--brand);color:white;padding:12px 18px;border-radius:12px;font-weight:600;box-shadow:var(--shadow)}
+    .btn-outline{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+
+    .timeline{position:relative}
+    .timeline::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:2px;background:#eee}
+    .tl-item{position:relative;padding-left:36px;margin:16px 0}
+    .dot{position:absolute;left:6px;top:8px;width:12px;height:12px;background:var(--brand);border-radius:50%;box-shadow:0 0 0 4px rgba(58,143,122,.15)}
+
+    .faq details{border:1px solid #eee;border-radius:12px;padding:14px 16px;background:#fff}
+    .faq details+details{margin-top:12px}
+    .faq summary{cursor:pointer;font-weight:600}
+
+    footer{padding:48px 0;background:#faf9f6;border-top:1px solid #eee}
+    .foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+    small{color:var(--muted)}
+    .chip{display:inline-block;padding:8px 12px;border-radius:999px;background:#f3f1ec}
+    .note{background:#fff2e8;border-left:4px solid var(--brand-2);padding:14px;border-radius:10px}
+
+    .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease, transform .5s ease}
+    .reveal.visible{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container inner">
+      <div class="brand">Nombre & Nombre</div>
+      <div class="menu" aria-label="Navegación principal">
+        <a href="#detalles">Detalles</a>
+        <a href="#programa">Programa</a>
+        <a href="#lugar">Lugar</a>
+        <a href="#rsvp">RSVP</a>
+        <a href="#regalos">Regalos</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="background-image:url('img/hero.jpg'); background-size:cover; background-position:center;">
+    <div class="container" style="backdrop-filter: blur(2px) brightness(1.05); padding: 20px; border-radius: 16px;">
+      <h1>¡Nos casamos!</h1>
+      <p>Y queremos celebrarlo contigo. Guarda la fecha y encuentra aquí toda la información.</p>
+      <div class="date-pill" id="wedding-date-pill">Sábado, 20 de junio de 2026 · 13:00</div>
+      <div class="countdown" aria-live="polite" aria-label="Cuenta atrás">
+        <div class="cd-card"><strong id="d">—</strong><span>días</span></div>
+        <div class="cd-card"><strong id="h">—</strong><span>horas</span></div>
+        <div class="cd-card"><strong id="m">—</strong><span>min</span></div>
+        <div class="cd-card"><strong id="s">—</strong><span>s</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="detalles">
+      <div class="container grid grid-2">
+        <div class="card reveal">
+          <h2>Detalles</h2>
+          <p class="muted">Fecha, dress code, niños y otras preguntas que Google no sabe (todavía).</p>
+          <ul>
+            <li><strong>Fecha:</strong> 20/06/2026</li>
+            <li><strong>Hora ceremonia:</strong> 13:00</li>
+            <li><strong>Dress code:</strong> Formal veraniego (evitaremos el blanco para no competir con la protagonista 😉).</li>
+            <li><strong>Niños:</strong> ¡Bienvenidos! Habrá zona infantil.</li>
+            <li><strong>Transporte:</strong> Autobuses desde el centro (salida 11:30, regreso 00:30).</li>
+            <li><strong>Hashtag:</strong> <span class="chip">#NombreYNombre2026</span></li>
+          </ul>
+          <p class="note">Tip: Guarda esta web en tu móvil: <em>Compartir → Añadir a pantalla de inicio</em>.</p>
+        </div>
+        <div class="card reveal">
+          <h2>Nuestra historia</h2>
+          <p>Nos conocimos en 2018 en una cafetería con Wi‑Fi dudoso y croissants excelentes. Desde entonces coleccionamos atardeceres, micro‑aventuras y tazas de café que nunca combinan.</p>
+          <p>Ahora queremos escribir el siguiente capítulo con vosotros. 💚</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="programa">
+      <div class="container">
+        <div class="card reveal">
+          <h2>Programa del día</h2>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="dot" aria-hidden="true"></div>
+              <strong>13:00 — Ceremonia</strong>
+              <div class="muted">Jardines del Palacio de Ejemplo</div>
+            </div>
+            <div class="tl-item">
+              <div class="dot" aria-hidden="true"></div>
+              <strong>14:00 — Cóctel</strong>
+              <div class="muted">Terraza norte</div>
+            </div>
+            <div class="tl-item">
+              <div class="dot" aria-hidden="true"></div>
+              <strong>15:30 — Banquete</strong>
+              <div class="muted">Salón principal</div>
+            </div>
+            <div class="tl-item">
+              <div class="dot" aria-hidden="true"></div>
+              <strong>18:30 — Barra libre & baile</strong>
+              <div class="muted">Con DJ inesperadamente épico</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lugar">
+      <div class="container grid grid-2">
+        <div class="card reveal">
+          <h2>El lugar</h2>
+          <p><strong>Palacio de Ejemplo</strong><br>Camino Bonito 123, Ciudad</p>
+          <p class="muted">Parking gratuito. Si vienes en bus, parada "Jardines" frente a la puerta.</p>
+          <div class="grid">
+            <a class="btn" href="https://maps.google.com/?q=Camino%20Bonito%20123" target="_blank" rel="noopener">Abrir en Google Maps</a>
+            <a class="btn btn-outline" href="#transporte">Ver transporte</a>
+          </div>
+        </div>
+        <div class="card reveal" aria-label="Mapa">
+          <div style="aspect-ratio:16/9;overflow:hidden;border-radius:12px">
+            <iframe title="Mapa del lugar" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.454!2d-3.70379!3d40.41678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4229979c0a?hl=es!2sEjemplo" width="100%" height="100%" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rsvp">
+      <div class="container">
+        <div class="card reveal">
+          <h2>Confirma tu asistencia (RSVP)</h2>
+          <p>Pulsa el botón para confirmar. Si tienes alergias o peticiones musicales imposibles, cuéntanoslo aquí.</p>
+          <a class="btn" href="https://forms.gle/tu-formulario" target="_blank" rel="noopener">Abrir formulario</a>
+          <p class="muted">Fecha límite: 20/04/2026</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <div class="container">
+        <div class="card reveal">
+          <h2>Galería</h2>
+          <p class="muted">Sustituye estas imágenes por las vuestras. Consejo profesional: elegir 8–12 y no más, que si no nadie llega al postre.</p>
+          <div class="grid grid-3" aria-label="Galería de fotos">
+            <img src="img/1.jpg" alt="Recuerdo 1" />
+            <img src="img/2.jpg" alt="Recuerdo 2" />
+            <img src="img/3.jpg" alt="Recuerdo 3" />
+            <img src="img/4.jpg" alt="Recuerdo 4" />
+            <img src="img/5.jpg" alt="Recuerdo 5" />
+            <img src="img/6.jpg" alt="Recuerdo 6" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="regalos">
+      <div class="container grid grid-2">
+        <div class="card reveal">
+          <h2>Lista de regalos</h2>
+          <p>Tu presencia es el mejor regalo. Si aun así quieres ayudarnos con la luna de miel:</p>
+          <ul>
+            <li><a href="https://www.amazon.es/hz/wishlist" target="_blank" rel="noopener">Lista de deseos</a></li>
+            <li>Cuenta: <code id="iban">ES12 3456 7890 1234 5678 9012</code> <button class="btn btn-outline" id="copy-iban" aria-label="Copiar IBAN">Copiar</button></li>
+          </ul>
+          <p class="muted" id="copy-msg" role="status" aria-live="polite"></p>
+        </div>
+        <div class="card reveal">
+          <h2>Alojamiento cercano</h2>
+          <p class="muted">Recomendaciones de hoteles/apartamentos a menos de 15 min:</p>
+          <ul>
+            <li>Hotel Jardines (★★★) — Código <strong>BODA2026</strong></li>
+            <li>Casa Bonita — Apartamento para 4‑6 personas</li>
+            <li>Hostal Centro — Económico y sorprendentemente mono</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="card faq reveal">
+          <h2>Preguntas frecuentes</h2>
+          <details>
+            <summary>¿Hay opciones vegetarianas/veganas/sin gluten?</summary>
+            <p>Sí, marca tu preferencia en el formulario y el equipo de cocina hará magia.</p>
+          </details>
+          <details>
+            <summary>¿Puedo llevar acompañante?</summary>
+            <p>Si tu invitación dice “+1”, por supuesto. Si no, escríbenos y vemos cómo encajarlo.</p>
+          </details>
+          <details>
+            <summary>¿Hay aparcamiento?</summary>
+            <p>Sí, gratuito en el recinto. Además habrá autobuses de ida y vuelta.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>
+        <strong>Nombre & Nombre</strong>
+        <div class="muted">Nos vemos el 20 · 06 · 2026</div>
+      </div>
+      <small>¿Dudas? Escríbenos a <a href="mailto:correo@ejemplo.com">correo@ejemplo.com</a></small>
+    </div>
+  </footer>
+
+  <script>
+    // === Configuración rápida ===
+    const WEDDING_ISO = '2026-06-20T13:00:00+02:00'; // <-- Cambia fecha/hora y zona
+
+    // Cuenta atrás
+    const dEl = document.getElementById('d');
+    const hEl = document.getElementById('h');
+    const mEl = document.getElementById('m');
+    const sEl = document.getElementById('s');
+
+    function tick(){
+      const end = new Date(WEDDING_ISO).getTime();
+      const now = Date.now();
+      let diff = Math.max(0, end - now);
+      const d = Math.floor(diff/ (1000*60*60*24)); diff -= d*(1000*60*60*24);
+      const h = Math.floor(diff/ (1000*60*60)); diff -= h*(1000*60*60);
+      const m = Math.floor(diff/ (1000*60)); diff -= m*(1000*60);
+      const s = Math.floor(diff/ 1000);
+      dEl.textContent = d; hEl.textContent = String(h).padStart(2,'0'); mEl.textContent = String(m).padStart(2,'0'); sEl.textContent = String(s).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+
+    // Copiar IBAN
+    const btn = document.getElementById('copy-iban');
+    const iban = document.getElementById('iban').textContent;
+    const msg = document.getElementById('copy-msg');
+    btn?.addEventListener('click', async ()=>{
+      try { await navigator.clipboard.writeText(iban); msg.textContent = 'IBAN copiado ✅'; }
+      catch(e){ msg.textContent = 'No se pudo copiar. Lo sentimos, somos humanos.' }
+    });
+
+    // Aparición suave al hacer scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
+    },{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+  </script>
+
+  <!-- Datos estructurados (SEO/compartir) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WeddingEvent",
+    "name": "Boda de Nombre & Nombre",
+    "startDate": "2026-06-20T13:00:00+02:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "Palacio de Ejemplo",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Camino Bonito 123",
+        "addressLocality": "Ciudad",
+        "postalCode": "28000",
+        "addressCountry": "ES"
+      }
+    },
+    "organizer": {
+      "@type": "Person",
+      "name": "Nombre"
+    },
+    "image": ["img/hero.jpg"],
+    "description": "Información de la boda: horarios, lugar, RSVP y más."
+  }
+  </script>
+</body>
+</html>
