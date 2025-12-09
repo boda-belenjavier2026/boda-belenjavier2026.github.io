@@ -13,8 +13,8 @@
   <meta property="og:image" content="img/hero.jpg" />
   <meta property="og:locale" content="es_ES" />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: añade una caligráfica elegante -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -34,10 +34,28 @@
     html,body{
       margin:0;
       padding:0;
-      background:var(--bg);
       color:var(--ink);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       scroll-behavior:smooth;
+      background:var(--bg);
+    }
+
+    body{
+      position:relative;
+      min-height:100vh;
+    }
+
+    /* Fondo sutil Basílica de Atocha */
+    .page-bg{
+      position:fixed;
+      inset:0;
+      /* TODO: cambia la ruta por el nombre real del archivo */
+      background:
+        linear-gradient(to bottom, rgba(255,253,248,0.92), rgba(255,253,248,0.96)),
+        url('img/basilica-atocha.jpg') center/cover no-repeat;
+      opacity:0.35; /* controla lo visible que es la foto */
+      z-index:-1;
+      pointer-events:none;
     }
 
     a{color:var(--brand);text-decoration:none}
@@ -62,10 +80,10 @@
       height:64px;
     }
     .brand{
-      font-family:"Playfair Display",serif;
-      font-weight:700;
+      font-family:"Great Vibes","Playfair Display",serif;
+      font-weight:400;
+      font-size:24px;
       letter-spacing:.5px;
-      font-size:18px;
     }
     .menu{
       display:flex;
@@ -122,8 +140,8 @@
       backdrop-filter:blur(2px);
     }
     .hero h1{
-      font-family:"Playfair Display",serif;
-      font-size: clamp(36px, 6vw, 64px);
+      font-family:"Great Vibes","Playfair Display",serif;
+      font-size: clamp(44px, 7vw, 72px);
       margin:0 0 12px;
     }
     .hero p{
@@ -179,9 +197,10 @@
     }
 
     h2{
-      font-family:"Playfair Display",serif;
-      font-size: clamp(28px,4vw,40px);
+      font-family:"Great Vibes","Playfair Display",serif;
+      font-size: clamp(32px,4.5vw,44px);
       margin:0 0 12px;
+      font-weight:400;
     }
     .muted{color:var(--muted)}
 
@@ -290,6 +309,9 @@
   </style>
 </head>
 <body>
+  <!-- Fondo Basílica sutil -->
+  <div class="page-bg" aria-hidden="true"></div>
+
   <nav class="nav">
     <div class="container inner">
       <div class="brand">Belén & Javier</div>
@@ -415,11 +437,10 @@
             Al lado de la Basílica de Atocha.
           </p>
           <div class="grid">
-            <!-- Enlace directo a Maps (puedes ajustarlo si quieres la URL exacta) -->
+            <!-- Enlace directo a Maps -->
             <a class="btn" href="https://www.google.com/maps?q=Real+F%C3%A1brica+de+Tapices+Madrid" target="_blank" rel="noopener">
               Abrir en Google Maps
             </a>
-            <!-- Puedes quitar este botón si no haces sección de transporte -->
             <a class="btn btn-outline" href="#faq">
               Ver preguntas frecuentes
             </a>
@@ -427,7 +448,7 @@
         </div>
         <div class="card reveal" aria-label="Mapa">
           <div style="aspect-ratio:16/9;overflow:hidden;border-radius:12px">
-            <!-- TODO: pega aquí el iframe de la Real Fábrica de Tapices desde Google Maps -->
+            <!-- TODO: pega aquí el iframe de la Real Fábrica de Tapices desde Google Maps si quieres algo más preciso -->
             <iframe
               title="Mapa del lugar"
               src="https://www.google.com/maps?q=Real+F%C3%A1brica+de+Tapices+Madrid&output=embed"
@@ -461,7 +482,7 @@
       </div>
     </section>
 
-    <!-- GALERÍA (OPCIONAL, PERO BONITA) -->
+    <!-- GALERÍA (OPCIONAL) -->
     <section id="galeria">
       <div class="container">
         <div class="card reveal">
@@ -482,9 +503,9 @@
       </div>
     </section>
 
-    <!-- REGALOS / ALOJAMIENTO (EXTRAS) -->
+    <!-- REGALOS (sin alojamiento) -->
     <section id="regalos">
-      <div class="container grid grid-2">
+      <div class="container">
         <div class="card reveal">
           <h2>Regalos</h2>
           <p>
@@ -504,16 +525,6 @@
             </li>
           </ul>
           <p class="muted" id="copy-msg" role="status" aria-live="polite"></p>
-        </div>
-        <div class="card reveal">
-          <h2>Alojamiento cercano</h2>
-          <p class="muted">Algunas opciones a menos de 15 minutos:</p>
-          <ul>
-            <!-- TODO: pon hoteles reales si quieres -->
-            <li>Hotel Jardines (★★★) — Código <strong>BODA2026</strong></li>
-            <li>Casa Bonita — Apartamento para 4-6 personas</li>
-            <li>Hostal Centro — Económico y sorprendentemente mono</li>
-          </ul>
         </div>
       </div>
     </section>
