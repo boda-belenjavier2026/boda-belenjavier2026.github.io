@@ -10,7 +10,7 @@
   <meta property="og:title" content="Belén & Javier — Nuestra Boda" />
   <meta property="og:description" content="Toda la información para el gran día: horarios, lugar, confirmación de asistencia y preguntas frecuentes." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="img/hero.jpg" />
+  <meta property="og:image" content="/img/atocha-cari.png" />
   <meta property="og:locale" content="es_ES" />
 
   <!-- Google Fonts -->
@@ -37,10 +37,9 @@
       scroll-behavior:smooth;
       background:var(--bg);
     }
-
     body{position:relative;min-height:100vh;}
 
-    /* === Fondo sutil con la caricatura === */
+    /* Fondo sutil con la caricatura */
     .page-bg{
       position:fixed;
       inset:0;
@@ -50,9 +49,9 @@
           rgba(255,253,248,0.97)
         ),
         url('/img/atocha-cari.png') center/cover no-repeat;
-      opacity:0.22; /* más bajo = más sutil */
-      filter:saturate(.92) contrast(.96) blur(.2px);
-      z-index:-1;
+      opacity:0.18;
+      filter:saturate(.92) contrast(.96) blur(.25px);
+      z-index:-2;
       pointer-events:none;
     }
 
@@ -111,25 +110,40 @@
       .menu-toggle{display:block;}
     }
 
-    /* HERO */
+    /* HERO (sin hero.jpg: usamos la caricatura con velo) */
     .hero{
       position:relative;
       display:grid;place-items:center;
       text-align:center;
       padding:88px 20px 72px;
-      background-image:url('img/hero.jpg'); /* portada */
+      color:#fff;
+
+      background-image:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        url('/img/atocha-cari.png');
       background-size:cover;
       background-position:center;
-      color:#fff;
     }
+
+    .hero::after{
+      /* Un velo extra para que se vea elegante y la lectura sea perfecta */
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(circle at 50% 35%, rgba(255,255,255,.06), rgba(0,0,0,.10));
+      pointer-events:none;
+    }
+
     .hero-overlay{
-      background:rgba(0,0,0,.35);
+      position:relative;
+      z-index:1;
+      background:rgba(0,0,0,.30);
       border-radius:24px;
       padding:24px 18px 30px;
-      max-width:720px;
+      max-width:760px;
       margin:0 auto;
       backdrop-filter:blur(2px);
     }
+
     .hero h1{
       font-family:"Great Vibes","Playfair Display",serif;
       font-size:clamp(44px,7vw,78px);
@@ -146,7 +160,7 @@
     .date-pill{
       display:inline-block;
       margin-top:18px;
-      background:var(--brand);
+      background:rgba(58,143,122,.95);
       color:white;
       padding:10px 16px;
       border-radius:999px;
@@ -180,6 +194,7 @@
       padding:28px;
       backdrop-filter:blur(1px);
     }
+
     .grid{display:grid;gap:22px}
     @media(min-width:900px){
       .grid-2{grid-template-columns:1fr 1fr}
@@ -235,10 +250,36 @@
 
     .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease, transform .5s ease}
     .reveal.visible{opacity:1;transform:none}
+
+    /* --- Formulario RSVP --- */
+    .form{display:grid;gap:14px;margin-top:14px}
+    .field{display:grid;gap:6px}
+    label{font-weight:600}
+    input[type="text"], input[type="tel"], textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid #e7e4dd;
+      background:rgba(255,255,255,.95);
+      font:inherit;
+      outline:none;
+    }
+    textarea{min-height:110px;resize:vertical}
+    input:focus, textarea:focus{border-color:rgba(58,143,122,.55); box-shadow:0 0 0 4px rgba(58,143,122,.12)}
+    .options{display:flex;flex-wrap:wrap;gap:10px}
+    .opt{
+      display:flex;align-items:center;gap:8px;
+      padding:10px 12px;border:1px solid #e7e4dd;border-radius:12px;
+      background:rgba(255,255,255,.92);
+    }
+    .opt input{transform:translateY(1px)}
+    .helper{font-size:13px;color:var(--muted)}
+    .success{display:none;margin-top:10px}
+    .success.show{display:block}
   </style>
 </head>
+
 <body>
-  <!-- Fondo sutil con la caricatura -->
   <div class="page-bg" aria-hidden="true"></div>
 
   <nav class="nav">
@@ -248,7 +289,6 @@
       <div class="menu" aria-label="Navegación principal" id="main-menu">
         <a href="#inicio">Inicio</a>
         <a href="#detalles">Detalles</a>
-        <a href="#historia">Nuestra historia</a>
         <a href="#programa">Programa del día</a>
         <a href="#lugar">Lugar</a>
         <a href="#rsvp">Confirma tu asistencia</a>
@@ -275,8 +315,9 @@
   </header>
 
   <main>
+    <!-- Detalles (sin "Nuestra historia") -->
     <section id="detalles">
-      <div class="container grid grid-2">
+      <div class="container">
         <div class="card reveal">
           <h2>Detalles</h2>
           <p class="muted">Fecha, dress code, niños y otras cosas que Google no sabe (todavía).</p>
@@ -289,12 +330,6 @@
             <li><strong>Hashtag:</strong> <span class="chip">#BelénYJavi2026</span></li>
           </ul>
           <p class="note">Tip: guarda esta web en tu móvil: <em>Compartir → Añadir a pantalla de inicio</em>.</p>
-        </div>
-
-        <div class="card reveal" id="historia">
-          <h2>Nuestra historia</h2>
-          <p>Nos conocimos en 2022 en una cafetería con Wi-Fi dudoso y croissants excelentes. Desde entonces coleccionamos atardeceres, micro-aventuras y tazas de café que nunca combinan.</p>
-          <p>Ahora queremos escribir el siguiente capítulo con vosotros. 💚</p>
         </div>
       </div>
     </section>
@@ -340,6 +375,7 @@
             <a class="btn btn-outline" href="#faq">Ver preguntas frecuentes</a>
           </div>
         </div>
+
         <div class="card reveal" aria-label="Mapa">
           <div style="aspect-ratio:16/9;overflow:hidden;border-radius:12px">
             <iframe
@@ -356,35 +392,78 @@
       </div>
     </section>
 
+    <!-- Confirma tu asistencia: formulario integrado -->
     <section id="rsvp">
       <div class="container">
         <div class="card reveal">
           <h2>Confirma tu asistencia</h2>
-          <p>Pulsa el botón para confirmar tu asistencia. Si tienes alergias, intolerancias o peticiones musicales imposibles, cuéntanoslo en el formulario.</p>
-          <a class="btn" href="https://forms.gle/tu-formulario" target="_blank" rel="noopener">Abrir formulario</a>
-          <p class="muted">Fecha límite para confirmar: 20/07/2026</p>
+          <p class="muted">Rellena este formulario para ayudarnos a organizarlo todo. ¡Gracias!</p>
+
+          <!-- IMPORTANTE:
+               - Si quieres que llegue a vuestro email, pega aquí un endpoint de Formspree.
+               - Si lo dejas como #, no se enviará a ningún sitio (solo validará campos).
+          -->
+          <form class="form" id="rsvp-form" action="#" method="POST">
+            <div class="field">
+              <label>Confirmación de asistencia</label>
+              <div class="options" role="radiogroup" aria-label="Confirmación de asistencia">
+                <label class="opt">
+                  <input type="radio" name="asistencia" value="Sí, asistiré" required>
+                  Sí, asistiré
+                </label>
+                <label class="opt">
+                  <input type="radio" name="asistencia" value="No podré asistir">
+                  No podré asistir
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="nombre">Nombre y apellido</label>
+              <input id="nombre" name="nombre_apellido" type="text" autocomplete="name" required placeholder="Ej. María García">
+            </div>
+
+            <div class="field">
+              <label>¿Traes acompañante?</label>
+              <div class="options" role="radiogroup" aria-label="Acompañante">
+                <label class="opt">
+                  <input type="radio" name="acompanante" value="Sí" required>
+                  Sí
+                </label>
+                <label class="opt">
+                  <input type="radio" name="acompanante" value="No">
+                  No
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="tel">Teléfono</label>
+              <input id="tel" name="telefono" type="tel" autocomplete="tel" placeholder="Ej. +34 600 000 000">
+            </div>
+
+            <div class="field">
+              <label for="comida">¿Algo que debamos saber respecto a la comida?</label>
+              <textarea id="comida" name="comida" placeholder="Alergias, intolerancias, vegetariano/vegano, sin gluten…"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="mensaje">¿Quieres dejar un mensaje?</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Lo leeremos con sonrisa 💚"></textarea>
+            </div>
+
+            <button class="btn" type="submit">Enviar</button>
+
+            <p class="success" id="rsvp-success" role="status" aria-live="polite">
+              ¡Gracias! Hemos recibido tu respuesta ✅
+            </p>
+
+            <p class="helper">Fecha límite: 20/07/2026</p>
+          </form>
         </div>
       </div>
     </section>
 
-    <section id="galeria">
-      <div class="container">
-        <div class="card reveal">
-          <h2>Galería</h2>
-          <p class="muted">Sustituye estas imágenes por las vuestras (8–12 máximo, que si no nadie llega al postre).</p>
-          <div class="grid grid-3" aria-label="Galería de fotos">
-            <img src="img/1.jpg" alt="Foto 1" />
-            <img src="img/2.jpg" alt="Foto 2" />
-            <img src="img/3.jpg" alt="Foto 3" />
-            <img src="img/4.jpg" alt="Foto 4" />
-            <img src="img/5.jpg" alt="Foto 5" />
-            <img src="img/6.jpg" alt="Foto 6" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- REGALOS (sin alojamiento) -->
     <section id="regalos">
       <div class="container">
         <div class="card reveal">
@@ -392,7 +471,10 @@
           <p>Tu presencia es el mejor regalo. Si aun así quieres ayudarnos con la luna de miel:</p>
           <ul>
             <li><a href="https://www.amazon.es/hz/wishlist" target="_blank" rel="noopener">Lista de deseos</a></li>
-            <li>Cuenta: <code id="iban">ES12 3456 7890 1234 5678 9012</code> <button class="btn btn-outline" id="copy-iban" aria-label="Copiar IBAN">Copiar</button></li>
+            <li>
+              Cuenta: <code id="iban">ES12 3456 7890 1234 5678 9012</code>
+              <button class="btn btn-outline" id="copy-iban" type="button" aria-label="Copiar IBAN">Copiar</button>
+            </li>
           </ul>
           <p class="muted" id="copy-msg" role="status" aria-live="polite"></p>
         </div>
@@ -418,11 +500,6 @@
             <summary>¿Hay aparcamiento?</summary>
             <p>Sí, hay aparcamiento en la zona. Además, la ubicación es muy cómoda para llegar en transporte público o taxi.</p>
           </details>
-
-          <details>
-            <summary>¿A qué hora es mejor llegar?</summary>
-            <p>Recomendamos llegar unos 20–30 minutos antes de la ceremonia para que podáis entrar con calma.</p>
-          </details>
         </div>
       </div>
     </section>
@@ -439,10 +516,9 @@
   </footer>
 
   <script>
-    // Configuración
+    // Cuenta atrás
     const WEDDING_ISO = '2026-09-05T18:00:00+02:00';
 
-    // Cuenta atrás
     const dEl = document.getElementById('d');
     const hEl = document.getElementById('h');
     const mEl = document.getElementById('m');
@@ -503,6 +579,19 @@
         }
       });
     });
+
+    // RSVP: si no has puesto endpoint (action="#"), mostramos un "gracias" local
+    const rsvpForm = document.getElementById('rsvp-form');
+    const rsvpSuccess = document.getElementById('rsvp-success');
+
+    rsvpForm?.addEventListener('submit', (e) => {
+      if (rsvpForm.action.endsWith('#') || rsvpForm.getAttribute('action') === '#') {
+        e.preventDefault();
+        rsvpForm.reset();
+        rsvpSuccess?.classList.add('show');
+        setTimeout(() => rsvpSuccess?.classList.remove('show'), 7000);
+      }
+    });
   </script>
 
   <script type="application/ld+json">
@@ -528,9 +617,10 @@
       "@type": "Person",
       "name": "Belén y Javier"
     },
-    "image": ["img/hero.jpg"],
+    "image": ["/img/atocha-cari.png"],
     "description": "Información de la boda: horarios, lugar, confirmación de asistencia y preguntas frecuentes."
   }
   </script>
 </body>
 </html>
+
