@@ -118,29 +118,46 @@
     }
 
     /* HERO (sin hero.jpg: usamos la caricatura con velo) */
-      .hero{
-        position: relative;
-        display: grid;
-        place-items: center;
-        text-align: center;
-      
-        /* Más altura para que “respire” la ilustración */
-        min-height: 70vh;
-        padding: 64px 20px 56px;
-      
-        color: #fff;
-      
-        background-image:
-          linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
-          url('/img/atocha-cari.png');
-      
-        /* 🔑 CLAVE: mostrar la imagen completa */
-        background-size: contain;
-        background-repeat: no-repeat;
-      
-        /* Bajamos un poco la imagen para centrar la fachada */
-        background-position: center 65%;
-      }
+        .hero{
+      position: relative;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    
+      min-height: 70vh;
+      padding: 64px 20px 56px;
+      color: #fff;
+    
+      /* CAPA 1: fondo difuminado que rellena */
+      background-image:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        url('/img/atocha-cari.png');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    /* CAPA 2: imagen principal completa */
+    .hero::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+    
+      background-image: url('/img/atocha-cari.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center 65%;
+    
+      filter: blur(0.6px) brightness(0.9);
+      opacity: 0.85;
+    
+      z-index: 0;
+    }
+    
+    /* El contenido va por encima */
+    .hero > *{
+      position: relative;
+      z-index: 1;
+    }
 
     .hero::after{
       /* Un velo extra para que se vea elegante y la lectura sea perfecta */
