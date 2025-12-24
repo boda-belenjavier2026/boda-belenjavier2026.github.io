@@ -118,20 +118,29 @@
     }
 
     /* HERO (sin hero.jpg: usamos la caricatura con velo) */
-    .hero{
-      position:relative;
-      display:grid;place-items:center;
-      text-align:center;
-      padding:56px 20px 48px; /* 👈 más bajo */
-      min-height: 65vh;       /* controla la altura total */
-      color:#fff;
-
-      background-image:
-        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
-        url('/img/atocha-cari.png');
-      background-size:75%;
-      background-position: center 55%;
-    }
+      .hero{
+        position: relative;
+        display: grid;
+        place-items: center;
+        text-align: center;
+      
+        /* Más altura para que “respire” la ilustración */
+        min-height: 70vh;
+        padding: 64px 20px 56px;
+      
+        color: #fff;
+      
+        background-image:
+          linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+          url('/img/atocha-cari.png');
+      
+        /* 🔑 CLAVE: mostrar la imagen completa */
+        background-size: contain;
+        background-repeat: no-repeat;
+      
+        /* Bajamos un poco la imagen para centrar la fachada */
+        background-position: center 65%;
+      }
 
     .hero::after{
       /* Un velo extra para que se vea elegante y la lectura sea perfecta */
