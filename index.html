@@ -24,7 +24,6 @@
       font-size:20px;
       background:var(--bg);
       color:var(--ink);
-      scroll-behavior:smooth;
     }
 
     body{
@@ -50,48 +49,22 @@
       background:rgba(255,253,248,.95);
       border-bottom:1px solid #eee;
       z-index:10;
-      backdrop-filter:saturate(120%) blur(8px);
     }
     .nav .inner{
       display:flex;
       justify-content:space-between;
       align-items:center;
       height:64px;
-      position:relative;
     }
     .brand{
       font-family:"Great Vibes", serif;
       font-size:28px;
-      line-height:1;
     }
     .menu{
       font-family:Inter, sans-serif;
       display:flex;
       gap:16px;
       font-size:14px;
-    }
-
-    /* Responsive nav */
-    .menu-toggle{
-      display:none;
-      background:none;
-      border:none;
-      font-size:26px;
-      cursor:pointer;
-    }
-    @media(max-width:768px){
-      .menu{
-        position:absolute;
-        top:64px; left:0; right:0;
-        display:none;
-        flex-direction:column;
-        gap:10px;
-        padding:12px 20px 16px;
-        background:rgba(255,253,248,.97);
-        border-bottom:1px solid #eee;
-      }
-      .menu.open{display:flex;}
-      .menu-toggle{display:block;}
     }
 
     /* HERO */
@@ -101,7 +74,7 @@
       height:42vh;
       border-radius:22px;
       background:
-        linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.18)),
+        linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2)),
         url('/img/atocha-cari.png') center/cover;
     }
 
@@ -113,7 +86,6 @@
       font-family:"Great Vibes", serif;
       font-size:clamp(48px,7vw,80px);
       margin:10px 0;
-      font-weight:400;
     }
 
     .date-pill{
@@ -125,7 +97,6 @@
       border-radius:999px;
       font-size:14px;
       font-weight:600;
-      font-family:Inter, sans-serif;
     }
 
     .countdown{
@@ -140,84 +111,46 @@
       padding:12px 14px;
       border-radius:14px;
       min-width:70px;
-      border:1px solid rgba(0,0,0,.10);
-      font-family:Inter, sans-serif;
-      font-size:13px;
     }
-    .cd-card strong{display:block;font-size:18px;color:var(--ink)}
+    .cd-card strong{display:block}
+
     @media(max-width:480px){
       .countdown{
         display:grid;
         grid-template-columns:repeat(4,1fr);
-        max-width:420px;
-        margin-left:auto;
-        margin-right:auto;
       }
-      .cd-card{min-width:0}
     }
 
-    section{padding:24px 0}
+    section{padding:22px 0}
 
     h2{
       font-family:"Great Vibes", serif;
       font-size:clamp(34px,5vw,48px);
-      margin:0 0 14px;
-      font-weight:400;
+      margin-bottom:14px;
     }
 
-    .muted{color:var(--muted)}
-
-    /* PROGRAMA DEL DÍA (centrado + iconos SVG) */
+    /* PROGRAMA DEL DÍA CENTRADO */
     .timeline{
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:18px;
-      margin-top:18px;
+      gap:22px;
+      margin-top:20px;
     }
+
     .tl-item{
-      width:100%;
-      max-width:560px;
+      max-width:520px;
       text-align:center;
-      padding:14px 14px;
-      border-radius:16px;
-      background:rgba(255,255,255,.28);
-      border:1px solid rgba(0,0,0,.08);
     }
 
     .tl-icon{
-      width:42px;
-      height:42px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:14px;
-      background:rgba(255,255,255,.45);
-      border:1px solid rgba(0,0,0,.10);
-      margin:0 auto 8px;
-      color:var(--brand);
-    }
-    .tl-icon svg{
-      width:22px;
-      height:22px;
-      display:block;
+      font-size:28px;
+      margin-bottom:6px;
     }
 
-    .tl-item strong{
-      display:block;
-      font-family:Inter, sans-serif;
-      font-weight:600;
-      font-size:14px;
-      letter-spacing:.2px;
-      margin-bottom:4px;
-    }
-    .tl-item .muted{
-      font-size:16px;
-    }
-
-    /* FORMULARIO (centrado) */
+    /* FORMULARIO CENTRADO */
     .form{
-      max-width:560px;
+      max-width:520px;
       margin:0 auto;
       display:grid;
       gap:14px;
@@ -227,14 +160,9 @@
     .field{
       display:grid;
       gap:6px;
-      text-align:center;
     }
 
-    label{
-      font-weight:600;
-      font-family:Inter, sans-serif;
-      font-size:14px;
-    }
+    label{font-weight:600}
 
     input,textarea{
       padding:12px;
@@ -244,6 +172,7 @@
       font:inherit;
       text-align:center;
     }
+
     textarea{min-height:110px}
 
     .options{
@@ -252,16 +181,12 @@
       gap:12px;
       flex-wrap:wrap;
     }
+
     .opt{
       padding:10px 14px;
       border-radius:12px;
       border:1px solid rgba(0,0,0,.15);
       background:rgba(255,255,255,.5);
-      font-family:Inter, sans-serif;
-      font-size:14px;
-      display:flex;
-      align-items:center;
-      gap:8px;
     }
 
     .btn{
@@ -273,51 +198,26 @@
       border-radius:14px;
       font-weight:600;
       cursor:pointer;
-      font-family:Inter, sans-serif;
-      font-size:14px;
     }
-    .btn:hover{filter:brightness(1.05)}
 
     /* IBAN */
     .iban-box{
-      max-width:520px;
+      max-width:420px;
       margin:0 auto;
       border:1px solid rgba(0,0,0,.15);
       border-radius:14px;
       padding:12px;
-      background:rgba(255,255,255,.35);
+      background:rgba(255,255,255,.4);
       text-align:center;
     }
-    summary{
-      cursor:pointer;
-      font-weight:600;
-      font-family:Inter, sans-serif;
-      list-style:none;
-    }
-    summary::-webkit-details-marker{display:none}
 
-    /* Reveal (scroll animation) */
-    .reveal{
-      opacity:0;
-      transform: translateY(12px);
-      transition: opacity .7s ease, transform .7s ease;
-      will-change: opacity, transform;
-    }
-    .reveal.visible{
-      opacity:1;
-      transform:none;
-    }
-    @media (prefers-reduced-motion: reduce){
-      .reveal{opacity:1; transform:none; transition:none}
-    }
+    summary{cursor:pointer;font-weight:600}
 
     footer{
       padding:40px 0;
       border-top:1px solid #eee;
       background:rgba(250,249,246,.6);
       text-align:center;
-      font-family:Inter, sans-serif;
-      font-size:14px;
     }
   </style>
 </head>
@@ -327,27 +227,24 @@
 <nav class="nav">
   <div class="container inner">
     <div class="brand">Belén & Javier</div>
-    <button class="menu-toggle" aria-label="Abrir menú" id="menu-toggle">☰</button>
-    <div class="menu" id="main-menu">
+    <div class="menu">
       <a href="#inicio">Inicio</a>
       <a href="#programa">Programa</a>
       <a href="#ceremonia">Ceremonia</a>
       <a href="#celebracion">Celebración</a>
       <a href="#rsvp">Asistencia</a>
-      <a href="#regalos">Regalos</a>
     </div>
   </div>
 </nav>
 
 <header id="inicio">
-  <div class="hero-photo reveal" aria-label="Basílica de Atocha"></div>
-
-  <div class="hero-content container reveal">
+  <div class="hero-photo"></div>
+  <div class="hero-content container">
     <h1>¡Nos casamos!</h1>
-    <p class="muted" style="max-width:680px;margin:0 auto;">Y queremos celebrarlo contigo. Guarda la fecha y encuentra aquí toda la información.</p>
+    <p>Y queremos celebrarlo contigo</p>
     <div class="date-pill">Sábado · 5 septiembre 2026 · 18:00</div>
 
-    <div class="countdown" aria-live="polite" aria-label="Cuenta atrás">
+    <div class="countdown">
       <div class="cd-card"><strong id="d">—</strong>días</div>
       <div class="cd-card"><strong id="h">—</strong>horas</div>
       <div class="cd-card"><strong id="m">—</strong>min</div>
@@ -358,215 +255,105 @@
 
 <main>
 
-<section id="programa" class="reveal">
+<section id="programa">
   <div class="container">
     <h2>Programa del día</h2>
-
     <div class="timeline">
-      <div class="tl-item reveal">
-        <div class="tl-icon" aria-hidden="true">
-          <!-- Church -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3v7"></path>
-            <path d="M9 6h6"></path>
-            <path d="M6 10l6-4 6 4"></path>
-            <path d="M7 10v10"></path>
-            <path d="M17 10v10"></path>
-            <path d="M5 20h14"></path>
-            <path d="M10 20v-4a2 2 0 0 1 4 0v4"></path>
-          </svg>
-        </div>
+      <div class="tl-item">
+        <div class="tl-icon">⛪</div>
         <strong>18:00 — Ceremonia</strong>
-        <div class="muted">Real Basílica de Nuestra Señora de Atocha</div>
+        <div class="muted">Basílica de Atocha</div>
       </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-icon" aria-hidden="true">
-          <!-- Toast -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 3l2 7-3 2v8a2 2 0 0 0 2 2h2"></path>
-            <path d="M17 3l-2 7 3 2v8a2 2 0 0 1-2 2h-2"></path>
-            <path d="M9 10l6 0"></path>
-            <path d="M10 22h4"></path>
-          </svg>
-        </div>
-        <strong>19:30 — Aperitivos</strong>
-        <div class="muted">Real Fábrica de Tapices</div>
+      <div class="tl-item">
+        <div class="tl-icon">🥂</div>
+        <strong>19:30 — Aperitivo</strong>
       </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-icon" aria-hidden="true">
-          <!-- Dinner -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 3v8"></path>
-            <path d="M6 3v8"></path>
-            <path d="M5 11v10"></path>
-            <path d="M12 3c2 2 3 5 3 8s-1 6-3 8"></path>
-            <path d="M20 3v18"></path>
-          </svg>
-        </div>
+      <div class="tl-item">
+        <div class="tl-icon">🍽️</div>
         <strong>21:30 — Cena</strong>
-        <div class="muted">Salón principal</div>
       </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-icon" aria-hidden="true">
-          <!-- Music -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
-            <path d="M19 16a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
-            <path d="M11 16V5l10-2v11"></path>
-            <path d="M11 7l10-2"></path>
-          </svg>
-        </div>
-        <strong>23:30 — Baile y barra libre</strong>
+      <div class="tl-item">
+        <div class="tl-icon">🎶</div>
+        <strong>23:30 — Baile</strong>
       </div>
     </div>
   </div>
 </section>
 
-<section id="ceremonia" class="reveal">
+<section id="ceremonia">
   <div class="container">
     <h2>La ceremonia</h2>
-    <p><strong>Real Basílica de Nuestra Señora de Atocha</strong><br>Av. de la Ciudad de Barcelona, 1 · Madrid</p>
-    <a class="btn" href="https://www.google.com/maps?q=Bas%C3%ADlica+de+Nuestra+Se%C3%B1ora+de+Atocha" target="_blank" rel="noopener">Abrir en Google Maps</a>
+    <p><strong>Basílica de Nuestra Señora de Atocha</strong><br>Madrid</p>
+    <a class="btn" href="https://www.google.com/maps?q=Basílica+de+Atocha" target="_blank">Abrir en Google Maps</a>
   </div>
 </section>
 
-<section id="celebracion" class="reveal">
+<section id="celebracion">
   <div class="container">
     <h2>La celebración</h2>
-    <p><strong>Real Fábrica de Tapices</strong><br>Entrada por Calle de Vandergoten, 1 · Madrid</p>
-    <a class="btn" href="https://www.google.com/maps?q=Real+F%C3%A1brica+de+Tapices+Madrid" target="_blank" rel="noopener">Abrir en Google Maps</a>
+    <p><strong>Real Fábrica de Tapices</strong><br>Madrid</p>
+    <a class="btn" href="https://www.google.com/maps?q=Real+Fábrica+de+Tapices+Madrid" target="_blank">Abrir en Google Maps</a>
   </div>
 </section>
 
-<section id="rsvp" class="reveal">
+<section id="rsvp">
   <div class="container">
     <h2>Confirma tu asistencia</h2>
-    <p class="muted" style="max-width:680px;margin:0 auto;">Rellena este formulario para ayudarnos a organizarlo todo. ¡Gracias!</p>
 
-    <form class="form" id="rsvp-form" action="https://formspree.io/f/xnnergry" method="POST">
+    <form class="form">
       <div class="field">
-        <label>Confirmación de asistencia</label>
-        <div class="options" role="radiogroup" aria-label="Confirmación de asistencia">
-          <label class="opt"><input type="radio" name="asistencia" value="Sí, asistiré" required> Sí, asistiré</label>
-          <label class="opt"><input type="radio" name="asistencia" value="No podré asistir"> No podré asistir</label>
+        <label>¿Asistirás?</label>
+        <div class="options">
+          <label class="opt"><input type="radio" name="a"> Sí</label>
+          <label class="opt"><input type="radio" name="a"> No</label>
         </div>
       </div>
 
       <div class="field">
-        <label for="nombre">Nombre y apellido</label>
-        <input id="nombre" name="nombre_apellido" type="text" autocomplete="name" required placeholder="Ej. María García">
+        <label>Nombre y apellidos</label>
+        <input type="text">
       </div>
 
       <div class="field">
         <label>¿Traes acompañante?</label>
-        <div class="options" role="radiogroup" aria-label="Acompañante">
-          <label class="opt"><input type="radio" name="acompanante" value="Sí" required> Sí</label>
-          <label class="opt"><input type="radio" name="acompanante" value="No"> No</label>
+        <div class="options">
+          <label class="opt"><input type="radio" name="b"> Sí</label>
+          <label class="opt"><input type="radio" name="b"> No</label>
         </div>
       </div>
 
-      <div class="field">
-        <label for="tel">Teléfono</label>
-        <input id="tel" name="telefono" type="tel" autocomplete="tel" placeholder="Ej. +34 600 000 000">
-      </div>
-
-      <div class="field">
-        <label for="comida">¿Algo que debamos saber respecto a la comida?</label>
-        <textarea id="comida" name="comida" placeholder="Alergias, intolerancias, vegetariano/vegano, sin gluten…"></textarea>
-      </div>
-
-      <div class="field">
-        <label for="mensaje">¿Quieres dejar un mensaje?</label>
-        <textarea id="mensaje" name="mensaje" placeholder="Lo leeremos con sonrisa 💚"></textarea>
-      </div>
-
-      <button class="btn" type="submit">Enviar</button>
-      <p class="muted" style="margin:6px 0 0;font-size:14px;font-family:Inter,sans-serif;">Fecha límite: 20/07/2026</p>
+      <button class="btn">Enviar</button>
     </form>
   </div>
 </section>
 
-<section id="regalos" class="reveal">
+<section id="regalos">
   <div class="container">
     <h2>Regalos</h2>
-    <p class="muted" style="max-width:680px;margin:0 auto;">Tu presencia es el mejor regalo. Si aun así te quedas con ganas de ayudarnos:</p>
-
     <details class="iban-box">
       <summary>Ver cuenta bancaria</summary>
-      <div style="margin-top:10px">
-        <p style="margin:0"><strong>IBAN:</strong> <code id="iban">ES55 0081 2716 9200 2914 3433</code></p>
-        <button class="btn" id="copy-iban" type="button" style="margin-top:10px">Copiar</button>
-        <p class="muted" id="copy-msg" role="status" aria-live="polite" style="margin-top:8px;font-size:14px;font-family:Inter,sans-serif;"></p>
-      </div>
+      <p>IBAN: <code>ES55 0081 2716 9200 2914 3433</code></p>
     </details>
   </div>
 </section>
 
 </main>
 
-<footer class="reveal">
+<footer>
   <strong>Belén & Javier</strong><br>
-  <span class="muted">05 · 09 · 2026</span><br><br>
-  <span class="muted">¿Dudas? </span><a href="tel:+34662442371">662 442 371</a>
+  <small>05 · 09 · 2026</small>
 </footer>
 
 <script>
-  // Countdown
-  const end = new Date('2026-09-05T18:00:00+02:00').getTime();
-  setInterval(()=>{
-    const now = Date.now();
-    let diff = Math.max(0, end - now);
-
-    const d = Math.floor(diff/86400000); diff -= d*86400000;
-    const h = Math.floor(diff/3600000); diff -= h*3600000;
-    const m = Math.floor(diff/60000); diff -= m*60000;
-    const s = Math.floor(diff/1000);
-
-    document.getElementById('d').textContent = d;
-    document.getElementById('h').textContent = String(h).padStart(2,'0');
-    document.getElementById('m').textContent = String(m).padStart(2,'0');
-    document.getElementById('s').textContent = String(s).padStart(2,'0');
-  },1000);
-
-  // Copy IBAN
-  const copyBtn = document.getElementById('copy-iban');
-  const iban = document.getElementById('iban')?.textContent || '';
-  const msg = document.getElementById('copy-msg');
-  copyBtn?.addEventListener('click', async ()=>{
-    try{ await navigator.clipboard.writeText(iban); msg.textContent = 'IBAN copiado ✅'; }
-    catch(e){ msg.textContent = 'No se pudo copiar. Puedes hacerlo a mano.'; }
-  });
-
-  // Mobile menu
-  const menuToggle = document.getElementById('menu-toggle');
-  const mainMenu = document.getElementById('main-menu');
-  menuToggle?.addEventListener('click', ()=>{
-    const opened = mainMenu.classList.toggle('open');
-    menuToggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
-  });
-  mainMenu?.querySelectorAll('a').forEach(a=>{
-    a.addEventListener('click', ()=>{
-      if(mainMenu.classList.contains('open')){
-        mainMenu.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded','false');
-      }
-    });
-  });
-
-  // Reveal on scroll
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+const end = new Date('2026-09-05T18:00:00+02:00').getTime();
+setInterval(()=>{
+  const now = Date.now();
+  let d = Math.max(0,end-now);
+  document.getElementById('d').textContent=Math.floor(d/86400000);
+  document.getElementById('h').textContent=Math.floor(d/3600000)%24;
+  document.getElementById('m').textContent=Math.floor(d/60000)%60;
+  document.getElementById('s').textContent=Math.floor(d/1000)%60;
+},1000);
 </script>
 
 </body>
