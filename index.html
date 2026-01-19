@@ -303,11 +303,117 @@
     }
     .iban-box summary::-webkit-details-marker{display:none;}
     .iban-content{margin-top:10px}
+
+    /* ===============================
+   CARTA DE ENTRADA
+================================ */
+
+#envelope-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.envelope{
+  position:relative;
+  width:320px;
+  height:220px;
+  background:#f8f4ec;
+  border-radius:8px;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+  overflow:hidden;
+}
+
+.envelope-body{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  text-align:center;
+}
+
+.envelope-title{
+  font-family:"Great Vibes", serif;
+  font-size:32px;
+  margin:0 0 8px;
+}
+
+.envelope-text{
+  font-size:16px;
+  margin-bottom:14px;
+}
+
+#open-letter{
+  background:var(--brand);
+  color:#fff;
+  border:none;
+  padding:10px 18px;
+  border-radius:999px;
+  font-size:14px;
+  cursor:pointer;
+}
+
+#open-letter:hover{
+  filter:brightness(1.05);
+}
+
+/* Solapa del sobre */
+.envelope-flap{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:50%;
+  background:#efe7da;
+  clip-path:polygon(0 0, 100% 0, 50% 100%);
+  transform-origin:top;
+  transition:transform 1s ease;
+  z-index:3;
+}
+
+/* Estado abierto */
+#envelope-overlay.open .envelope-flap{
+  transform:rotateX(180deg);
+}
+
+#envelope-overlay.open{
+  animation:fadeOut 1.2s ease forwards;
+  animation-delay:1s;
+}
+
+@keyframes fadeOut{
+  to{
+    opacity:0;
+    visibility:hidden;
+  }
+}
+
   </style>
 </head>
 
 <body>
 
+<!-- CARTA DE ENTRADA -->
+<div id="envelope-overlay">
+  <div class="envelope">
+    <div class="envelope-flap"></div>
+    <div class="envelope-body">
+      <p class="envelope-title">Belén & Javier</p>
+      <p class="envelope-text">Tenemos algo que contarte…</p>
+      <button id="open-letter">Abrir invitación</button>
+    </div>
+  </div>
+</div>
+
+  
   <nav class="nav">
     <div class="container inner">
       <div class="brand">Belén & Javier</div>
@@ -678,5 +784,14 @@
   }
   </script>
 
+ <script>
+  const openBtn = document.getElementById('open-letter');
+  const overlay = document.getElementById('envelope-overlay');
+
+  openBtn.addEventListener('click', () => {
+    overlay.classList.add('open');
+  });
+</script>
+ 
 </body>
 </html>
