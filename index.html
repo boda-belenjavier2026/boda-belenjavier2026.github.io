@@ -561,4 +561,190 @@
 
             <div class="field">
               <label for="tel">Teléfono</label>
-              <input id="tel" name="telefono" type="tel" autocomplete="tel" placeholder="
+              <input id="tel" name="telefono" type="tel" autocomplete="tel" placeholder="Ej. +34 600 000 000">
+            </div>
+
+            <div class="field">
+              <label for="comida">¿Algo que debamos saber respecto a la comida?</label>
+              <textarea id="comida" name="comida" placeholder="Alergias, intolerancias, vegetariano/vegano, sin gluten…"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="mensaje">¿Quieres dejar un mensaje?</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Lo leeremos con sonrisa 💚"></textarea>
+            </div>
+
+            <button class="btn" type="submit">Enviar</button>
+
+            <p class="success" id="rsvp-success" role="status" aria-live="polite">
+              ¡Gracias! Hemos recibido tu respuesta ✅
+            </p>
+
+            <p class="helper">Fecha límite: 20/07/2026</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="regalos">
+      <div class="container">
+        <div class="card reveal">
+          <h2>Regalos</h2>
+          <p>Tu presencia es el mejor regalo. Si aun así te quedas con ganas de ayudarnos:</p>
+
+          <details class="iban-box">
+            <summary>Ver cuenta bancaria</summary>
+            <div class="iban-content">
+              <p>
+                <strong>IBAN:</strong> <code id="iban">ES55 0081 2716 9200 2914 3433</code>
+                <button class="btn btn-outline" id="copy-iban" type="button">Copiar</button>
+              </p>
+              <p class="muted" id="copy-msg" role="status" aria-live="polite"></p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="card faq reveal">
+          <h2>Preguntas frecuentes</h2>
+
+          <details>
+            <summary>¿Hay opciones vegetarianas/veganas/sin gluten?</summary>
+            <p>Sí. Indícalo en el formulario y el equipo de cocina se encarga del resto.</p>
+          </details>
+
+          <details>
+            <summary>¿Puedo llevar acompañante?</summary>
+            <p>¡Por supuesto! Tan solo tienes que indicarlo en el formulario.</p>
+          </details>
+
+          <details>
+            <summary>¿Hay aparcamiento?</summary>
+            <p>No hay demasiado aparcamiento en la zona. Sin embargo, la ubicación es muy cómoda para llegar en transporte público o taxi.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>
+        <strong>Belén & Javier</strong>
+        <div class="muted">Nos vemos el 05 · 09 · 2026</div>
+      </div>
+      <small>¿Dudas? Escríbenos a <a href="tel:+34662442371">662 442 371</a></small>
+    </div>
+  </footer>
+
+  <script>
+    // Cuenta atrás
+    const WEDDING_ISO = '2026-09-05T18:00:00+02:00';
+
+    const dEl = document.getElementById('d');
+    const hEl = document.getElementById('h');
+    const mEl = document.getElementById('m');
+    const sEl = document.getElementById('s');
+
+    function tick(){
+      const end = new Date(WEDDING_ISO).getTime();
+      const now = Date.now();
+      let diff = Math.max(0, end - now);
+
+      const d = Math.floor(diff / (1000*60*60*24)); diff -= d*(1000*60*60*24);
+      const h = Math.floor(diff / (1000*60*60)); diff -= h*(1000*60*60);
+      const m = Math.floor(diff / (1000*60)); diff -= m*(1000*60);
+      const s = Math.floor(diff / 1000);
+
+      dEl.textContent = d;
+      hEl.textContent = String(h).padStart(2,'0');
+      mEl.textContent = String(m).padStart(2,'0');
+      sEl.textContent = String(s).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+
+    // Copiar IBAN
+    const btn = document.getElementById('copy-iban');
+    const iban = document.getElementById('iban')?.textContent || '';
+    const msg = document.getElementById('copy-msg');
+
+    btn?.addEventListener('click', async ()=> {
+      try { await navigator.clipboard.writeText(iban); msg.textContent = 'IBAN copiado ✅'; }
+      catch(e){ msg.textContent = 'No se pudo copiar. Puedes hacerlo a mano.'; }
+    });
+
+    // Aparición suave
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    },{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+    // Menú móvil
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainMenu = document.getElementById('main-menu');
+
+    menuToggle?.addEventListener('click', () => {
+      const opened = mainMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
+    });
+
+    mainMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (mainMenu.classList.contains('open')) {
+          mainMenu.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // RSVP: si no has puesto endpoint (action="#"), mostramos un "gracias" local
+    const rsvpForm = document.getElementById('rsvp-form');
+    const rsvpSuccess = document.getElementById('rsvp-success');
+
+    rsvpForm?.addEventListener('submit', (e) => {
+      if (rsvpForm.action.endsWith('#') || rsvpForm.getAttribute('action') === '#') {
+        e.preventDefault();
+        rsvpForm.reset();
+        rsvpSuccess?.classList.add('show');
+        setTimeout(() => rsvpSuccess?.classList.remove('show'), 7000);
+      }
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WeddingEvent",
+    "name": "Boda de Belén y Javier",
+    "startDate": "2026-09-05T18:00:00+02:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "Real Fábrica de Tapices",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calle Fuenterrabía, 2",
+        "addressLocality": "Madrid",
+        "postalCode": "28014",
+        "addressCountry": "ES"
+      }
+    },
+    "organizer": {
+      "@type": "Person",
+      "name": "Belén y Javier"
+    },
+    "image": ["/img/atocha-cari.png"],
+    "description": "Información de la boda: horarios, lugar, confirmación de asistencia y preguntas frecuentes."
+  }
+  </script>
+</body>
+</html>
