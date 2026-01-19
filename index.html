@@ -13,7 +13,7 @@
   <meta property="og:image" content="/img/atocha-cari.png" />
   <meta property="og:locale" content="es_ES" />
 
-  <!-- Google Fonts (añadida EB Garamond porque la estás usando) -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -23,7 +23,6 @@
       --muted: #6b6b6b;
       --brand: #3a8f7a;
       --brand-2: #e6b8a2;
-      --card: rgba(255,255,255,.92);
       --shadow: 0 8px 30px rgba(0,0,0,.08);
       --radius: 18px;
       --maxw: 1100px;
@@ -40,19 +39,14 @@
       background: var(--bg);
     }
 
-    /* ✅ Fondo de textura aplicado al body (robusto y visible) */
+    /* Fondo de textura (papel) */
     body{
       position:relative;
       min-height:100vh;
       background-image: url('/img/paper-texture.png');
       background-repeat: repeat;
-      background-size: 900px auto; /* cambia a 600px si quieres más textura */
+      background-size: 900px auto;
       background-color: var(--bg);
-    }
-
-    /* Mantener el menú tal cual (Inter) */
-    .menu{
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
 
     a{color:var(--brand);text-decoration:none}
@@ -80,7 +74,9 @@
       line-height:1;
     }
 
+    /* Mantener el menú en Inter */
     .menu{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       display:flex;
       align-items:center;
       gap:16px;
@@ -110,51 +106,50 @@
       .menu-toggle{display:block;}
     }
 
-    /* HERO */
+    /* HERO: primero foto "limpia" + debajo contenido (contador) */
     .hero{
-      position: relative;
-      display: grid;
-      place-items: center;
-      text-align: center;
+      padding: 0;
+      color:#fff;
+    }
 
-      min-height: 70vh;
-      padding: 64px 20px 56px;
-      color: #fff;
-
+    /* Foto de la iglesia (arriba) */
+    .hero-photo{
+      position:relative;
+      min-height: 42vh;                 /* altura de la foto */
       background-image:
-        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        linear-gradient(rgba(0,0,0,.18), rgba(0,0,0,.18)),
         url('/img/atocha-cari.png');
       background-size: cover;
       background-position: center;
     }
 
-    .hero-overlay{
-      position:relative;
-      z-index:1;
-      background:rgba(0,0,0,.30);
-      border-radius:24px;
-      padding:24px 18px 30px;
-      max-width:760px;
-      margin:0 auto;
-      backdrop-filter:blur(2px);
+    /* Bloque con texto + contador (debajo de la foto) */
+    .hero-content{
+      padding: 22px 20px 24px;
+      text-align:center;
+      color: var(--ink);
     }
 
-    .hero h1{
+    .hero-content h1{
       font-family:"Great Vibes","Playfair Display",serif;
       font-size:clamp(44px,7vw,78px);
-      margin:0 0 10px;
+      margin: 6px 0 10px;
       font-weight:400;
       letter-spacing:.3px;
+      line-height:1;
+      color: var(--ink);
     }
-    .hero p{
-      margin:0;
-      font-size:clamp(16px,2.6vw,20px);
-      color:#f6f3ee;
+
+    .hero-content p{
+      margin:0 auto;
+      max-width: 760px;
+      font-size:clamp(16px,2.2vw,20px);
+      color: #2b2b2b;
     }
 
     .date-pill{
       display:inline-block;
-      margin-top:18px;
+      margin-top:16px;
       background:rgba(58,143,122,.95);
       color:white;
       padding:10px 16px;
@@ -167,13 +162,13 @@
       display:flex;
       gap:14px;
       justify-content:center;
-      margin-top:28px;
+      margin-top:18px;
       flex-wrap:wrap;
     }
     .cd-card{
-      background:rgba(255,255,255,.94);
+      background:rgba(255,255,255,.75);
       color:var(--ink);
-      box-shadow:var(--shadow);
+      border: 1px solid rgba(0,0,0,.08);
       border-radius:var(--radius);
       padding:14px 18px;
       min-width:74px;
@@ -181,13 +176,35 @@
     .cd-card strong{display:block;font-size:20px}
     .cd-card span{font-size:12px;color:var(--muted)}
 
-    section{padding:20px 0}
+    /* ✅ Contador en móvil: 4 en la misma línea */
+    @media (max-width: 480px){
+      .countdown{
+        display:grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        width: 100%;
+        max-width: 420px;
+        margin-left:auto;
+        margin-right:auto;
+      }
+      .cd-card{
+        min-width: 0;
+        padding: 10px 8px;
+        border-radius: 14px;
+      }
+      .cd-card strong{font-size:16px}
+      .cd-card span{font-size:11px}
+    }
+
+    /* Secciones más compactas */
+    section{padding:18px 0}
+
+    /* ✅ Quitar cuadros blancos: estructura sin cards */
     .card{
-      background:var(--card);
-      box-shadow:var(--shadow);
-      border-radius:var(--radius);
-      padding:14px;
-      backdrop-filter:blur(1px);
+      background: transparent;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 8px 0;
     }
 
     .grid{display:grid;gap:22px}
@@ -232,15 +249,15 @@
     .tl-item{position:relative;padding-left:36px;margin:16px 0}
     .dot{position:absolute;left:6px;top:8px;width:12px;height:12px;background:var(--brand);border-radius:50%;box-shadow:0 0 0 4px rgba(58,143,122,.15)}
 
-    .faq details{border:1px solid #eee;border-radius:12px;padding:14px 16px;background:#fff}
+    .faq details{border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:14px 16px;background:rgba(255,255,255,.45)}
     .faq details+details{margin-top:12px}
     .faq summary{cursor:pointer;font-weight:600;list-style:none}
     .faq summary::-webkit-details-marker{display:none;}
 
-    footer{padding:48px 0;background:#faf9f6;border-top:1px solid #eee}
+    footer{padding:42px 0;background:rgba(250,249,246,.6);border-top:1px solid #eee}
     .foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;font-size:14px}
     small{color:var(--muted)}
-    .chip{display:inline-block;padding:8px 12px;border-radius:999px;background:#f3f1ec;font-size:13px}
+    .chip{display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(243,241,236,.7);font-size:13px}
 
     .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease, transform .5s ease}
     .reveal.visible{opacity:1;transform:none}
@@ -253,8 +270,8 @@
       width:100%;
       padding:12px 12px;
       border-radius:12px;
-      border:1px solid #e7e4dd;
-      background:rgba(255,255,255,.95);
+      border:1px solid rgba(0,0,0,.12);
+      background:rgba(255,255,255,.55);
       font:inherit;
       outline:none;
     }
@@ -263,13 +280,29 @@
     .options{display:flex;flex-wrap:wrap;gap:10px}
     .opt{
       display:flex;align-items:center;gap:8px;
-      padding:10px 12px;border:1px solid #e7e4dd;border-radius:12px;
-      background:rgba(255,255,255,.92);
+      padding:10px 12px;border:1px solid rgba(0,0,0,.12);border-radius:12px;
+      background:rgba(255,255,255,.45);
     }
     .opt input{transform:translateY(1px)}
     .helper{font-size:13px;color:var(--muted)}
     .success{display:none;margin-top:10px}
     .success.show{display:block}
+
+    /* --- Desplegable IBAN --- */
+    .iban-box{
+      border: 1px solid rgba(0,0,0,.10);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,.30);
+      max-width: 560px;
+    }
+    .iban-box summary{
+      cursor:pointer;
+      font-weight:600;
+      list-style:none;
+    }
+    .iban-box summary::-webkit-details-marker{display:none;}
+    .iban-content{margin-top:10px}
   </style>
 </head>
 
@@ -284,7 +317,7 @@
         <a href="#detalles">Detalles</a>
         <a href="#programa">Programa del día</a>
         <a href="#ceremonia">La ceremonia</a>
-        <a href="#lugar">La celebración</a>
+        <a href="#celebracion">La celebración</a>
         <a href="#rsvp">Confirma tu asistencia</a>
         <a href="#faq">Preguntas frecuentes</a>
       </div>
@@ -292,8 +325,12 @@
   </nav>
 
   <header class="hero" id="inicio">
-    <div class="hero-overlay">
-      <div class="container" style="padding:0;">
+    <!-- Foto primero -->
+    <div class="hero-photo" aria-label="Imagen de la Basílica de Atocha"></div>
+
+    <!-- Contenido debajo: título + contador -->
+    <div class="hero-content">
+      <div class="container">
         <h1>¡Nos casamos!</h1>
         <p>Y queremos celebrarlo contigo. Guarda la fecha y encuentra aquí toda la información.</p>
         <div class="date-pill" id="wedding-date-pill">Sábado, 05 de septiembre de 2026 · 18:00</div>
@@ -309,7 +346,6 @@
   </header>
 
   <main>
-    <!-- Detalles (sin "Nuestra historia") -->
     <section id="detalles">
       <div class="container">
         <div class="card reveal">
@@ -355,52 +391,48 @@
     </section>
 
     <section id="ceremonia">
-  <div class="container grid grid-2">
-    <div class="card reveal">
-      <h2>La ceremonia</h2>
-      <p>
-        <strong>Real Basílica de Nuestra Señora de Atocha</strong><br>
-        <br>Av de la Ciudad de Barcelona, 1 <br>28014 · Madrid</p>
-      </p>
-      <p class="muted">
-        Hora: <strong>18:00</strong> 
-      </p>
+      <div class="container grid grid-2">
+        <div class="card reveal">
+          <h2>La ceremonia</h2>
+          <p>
+            <strong>Real Basílica de Nuestra Señora de Atocha</strong><br>
+            Av de la Ciudad de Barcelona, 1 <br>28014 · Madrid
+          </p>
+          <p class="muted">Hora: <strong>18:00</strong></p>
 
-      <div class="grid">
-        <!-- TODO: pega un enlace de Google Maps directo a la Basílica -->
-        <a class="btn" href="https://www.google.com/maps?q=Bas%C3%ADlica+de+Nuestra+Se%C3%B1ora+de+Atocha" target="_blank" rel="noopener">
-          Abrir en Google Maps
-        </a>
-      </div>
-    </div>
+          <div class="grid">
+            <a class="btn" href="https://www.google.com/maps?q=Bas%C3%ADlica+de+Nuestra+Se%C3%B1ora+de+Atocha" target="_blank" rel="noopener">
+              Abrir en Google Maps
+            </a>
+          </div>
+        </div>
 
-    <div class="card reveal" aria-label="Mapa de la ceremonia">
-      <div style="aspect-ratio:16/9;overflow:hidden;border-radius:12px">
-        <iframe
-          title="Mapa de la ceremonia"
-          src="https://www.google.com/maps?q=Bas%C3%ADlica+de+Nuestra+Se%C3%B1ora+de+Atocha&output=embed"
-          width="100%"
-          height="100%"
-          style="border:0"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="card reveal" aria-label="Mapa de la ceremonia">
+          <div style="aspect-ratio:16/9;overflow:hidden;border-radius:12px">
+            <iframe
+              title="Mapa de la ceremonia"
+              src="https://www.google.com/maps?q=Bas%C3%ADlica+de+Nuestra+Se%C3%B1ora+de+Atocha&output=embed"
+              width="100%"
+              height="100%"
+              style="border:0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <section id="celebracion">
       <div class="container grid grid-2">
         <div class="card reveal">
           <h2>La celebración</h2>
           <p><strong>Real Fábrica de Tapices</strong><br>Entrada por Calle de Vandergoten, 1<br>28014 · Madrid</p>
-          <p class="muted"Hora: <strong>19:00</strong>
+          <p class="muted">Hora: <strong>19:00</strong></p>
           <div class="grid">
             <a class="btn" href="https://www.google.com/maps?q=Real+F%C3%A1brica+de+Tapices+Madrid" target="_blank" rel="noopener">Abrir en Google Maps</a>
           </div>
         </div>
-  <!-- (resto de tu HTML igual...) -->
 
         <div class="card reveal" aria-label="Mapa">
           <div style="aspect-ratio:16/9;overflow:hidden;border-radius:12px">
@@ -418,17 +450,12 @@
       </div>
     </section>
 
-    <!-- Confirma tu asistencia: formulario integrado -->
     <section id="rsvp">
       <div class="container">
         <div class="card reveal">
           <h2>Confirma tu asistencia</h2>
           <p class="muted">Rellena este formulario para ayudarnos a organizarlo todo. ¡Gracias!</p>
 
-          <!-- IMPORTANTE:
-               - Si quieres que llegue a vuestro email, pega aquí un endpoint de Formspree.
-               - Si lo dejas como #, no se enviará a ningún sitio (solo validará campos).
-          -->
           <form class="form" id="rsvp-form" action="https://formspree.io/f/xnnergry" method="POST">
             <div class="field">
               <label>Confirmación de asistencia</label>
@@ -495,13 +522,17 @@
         <div class="card reveal">
           <h2>Regalos</h2>
           <p>Tu presencia es el mejor regalo. Si aun así te quedas con ganas de ayudarnos:</p>
-          <ul>
-            <li>
-              Cuenta: <code id="iban">ES55 0081 2716 9200 2914 3433</code>
-              <button class="btn btn-outline" id="copy-iban" type="button" aria-label="Copiar IBAN">Copiar</button>
-            </li>
-          </ul>
-          <p class="muted" id="copy-msg" role="status" aria-live="polite"></p>
+
+          <details class="iban-box">
+            <summary>Ver cuenta bancaria</summary>
+            <div class="iban-content">
+              <p>
+                <strong>IBAN:</strong> <code id="iban">ES55 0081 2716 9200 2914 3433</code>
+                <button class="btn btn-outline" id="copy-iban" type="button">Copiar</button>
+              </p>
+              <p class="muted" id="copy-msg" role="status" aria-live="polite"></p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -536,7 +567,7 @@
         <strong>Belén & Javier</strong>
         <div class="muted">Nos vemos el 05 · 09 · 2026</div>
       </div>
-      <small>¿Dudas? Escríbenos a <a href="mailto:correo@ejemplo.com">662442371</a></small>
+      <small>¿Dudas? Escríbenos a <a href="tel:+34662442371">662 442 371</a></small>
     </div>
   </footer>
 
@@ -646,8 +677,6 @@
     "description": "Información de la boda: horarios, lugar, confirmación de asistencia y preguntas frecuentes."
   }
   </script>
+
 </body>
 </html>
-  <!-- (resto de tu HTML igual...) -->
-
-
