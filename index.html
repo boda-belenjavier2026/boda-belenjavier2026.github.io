@@ -106,118 +106,101 @@
       .menu-toggle{display:block;}
     }
 
-/* HERO: imagen protagonista (casi pantalla completa) + texto pegado abajo */
-.hero{
-  min-height: 100svh;            /* pantalla completa */
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;  /* imagen arriba / texto abajo */
-  padding: 0;                     /* ✅ adiós huecos */
-}
+      /* ================= HERO UNIFICADO (WEB = MÓVIL) ================= */
+      /* Objetivo: imagen protagonista + texto abajo, mismo formato siempre */
+      
+      .hero{
+        min-height: 100svh;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between; /* imagen arriba / texto abajo */
+        padding: 0;                    /* sin huecos */
+      }
+      
+      /* Imagen ocupa casi todo el alto disponible */
+      .hero-photo{
+        flex: 1;
+        max-width: var(--maxw);
+        width: calc(100% - 40px);
+        margin: 0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+      }
+      
+      /* Imagen grande siempre (mismo criterio en móvil y web) */
+      .hero-photo img{
+        width: 100%;
+        max-width: 1100px;   /* límite en escritorio */
+        height: 100%;
+        max-height: 80svh;   /* protagonista */
+        object-fit: contain;
+        display:block;
+      }
+      
+      /* Texto abajo, compacto */
+      .hero-content{
+        padding: 10px 20px 16px;
+        text-align:center;
+        color: var(--ink);
+      }
+      
+      .hero-content h1{
+        font-family:"Great Vibes","Playfair Display",serif;
+        font-size:clamp(44px,7vw,78px);
+        margin: 6px 0 6px;
+        font-weight:400;
+        letter-spacing:.3px;
+        line-height:1;
+        color: var(--ink);
+      }
+      
+      .hero-content p{
+        margin:0 auto;
+        max-width: 760px;
+        font-size:clamp(16px,2.2vw,20px);
+        color: #2b2b2b;
+      }
+      
+      .date-pill{
+        display:inline-block;
+        margin-top:10px;
+        background:rgba(58,143,122,.95);
+        color:white;
+        padding:10px 16px;
+        border-radius:999px;
+        font-weight:600;
+        font-size:14px;
+        box-shadow: var(--shadow);
+      }
+      
+      .scroll-hint{
+        margin-top: 8px;
+        font-family: Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+        font-size: 13px;
+        color: var(--muted);
+        display:flex;
+        gap:8px;
+        align-items:center;
+        justify-content:center;
+        opacity:.9;
+        user-select:none;
+      }
+      .scroll-hint .arrow{
+        font-size: 12px;
+        transform: translateY(-1px);
+      }
+      
+      /* ================= Ajuste mínimo SOLO para pantallas pequeñas ================= */
+      /* MISMO FORMATO; solo afinamos el alto máximo de la imagen para que no “coma” el texto */
+      @media (max-width: 480px){
+        .hero-photo{ width: calc(100% - 24px); } /* un pelín menos margen lateral */
+        .hero-photo img{ max-height: 76svh; }    /* deja sitio al texto sin cambiar el diseño */
+        .hero-content{ padding: 10px 14px 14px; }
+        .date-pill{ font-size: 13px; padding: 9px 14px; }
+        .scroll-hint{ font-size: 12px; }
+      }
 
-/* Imagen ocupa casi todo el alto disponible */
-.hero-photo{
-  flex: 1;                        /* ✅ se come el espacio */
-  max-width: var(--maxw);
-  width: calc(100% - 40px);
-  margin: 0 auto;                 /* ✅ sin margen arriba */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-/* Imagen MUCHO más grande */
-.hero-photo img{
-  width: min(1100px, 98vw);       /* ✅ más grande */
-  height: 100%;
-  max-height: 78svh;              /* ✅ casi toda la pantalla */
-  object-fit: contain;
-  display:block;
-}
-
-/* Texto abajo, sin separar demasiado */
-.hero-content{
-  padding: 10px 20px 16px;        /* ✅ compacto */
-  text-align:center;
-  color: var(--ink);
-}
-
-.hero-content h1{
-  font-family:"Great Vibes","Playfair Display",serif;
-  font-size:clamp(44px,7vw,78px);
-  margin: 6px 0 6px;
-  font-weight:400;
-  letter-spacing:.3px;
-  line-height:1;
-  color: var(--ink);
-}
-
-.hero-content p{
-  margin:0 auto;
-  max-width: 760px;
-  font-size:clamp(16px,2.2vw,20px);
-  color: #2b2b2b;
-}
-
-.date-pill{
-  display:inline-block;
-  margin-top:10px;               /* ✅ más cerca */
-  background:rgba(58,143,122,.95);
-  color:white;
-  padding:10px 16px;
-  border-radius:999px;
-  font-weight:600;
-  font-size:14px;
-  box-shadow: var(--shadow);
-}
-
-.scroll-hint{
-  margin-top: 8px;               /* ✅ más cerca */
-  font-family: Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  font-size: 13px;
-  color: var(--muted);
-  display:flex;
-  gap:8px;
-  align-items:center;
-  justify-content:center;
-  opacity:.9;
-  user-select:none;
-}
-.scroll-hint .arrow{
-  font-size: 12px;
-  transform: translateY(-1px);
-}
-
-/* ===== MÓVIL: aún más protagonista, sin perder texto ===== */
-@media (max-width: 480px){
-  .hero{
-    padding: 0;
-  }
-
-  .hero-photo{
-    width: calc(100% - 24px);     /* un poco menos margen lateral */
-  }
-
-  .hero-photo img{
-    width: 100vw;                 /* ocupa todo el ancho visual */
-    max-height: 82svh;            /* ✅ casi toda la pantalla */
-  }
-
-  .hero-content{
-    padding: 8px 14px 14px;       /* compacto */
-  }
-
-  .date-pill{
-    margin-top: 8px;
-    padding: 9px 14px;
-    font-size: 13px;
-  }
-
-  .scroll-hint{
-    margin-top: 6px;
-    font-size: 12px;
-  }
-}
 
 
     /* Countdown (lo dejamos para “después”, al empezar a scrollear) */
