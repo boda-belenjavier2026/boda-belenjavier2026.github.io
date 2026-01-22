@@ -17,6 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Libre+Baskerville:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&family=DM+Serif+Display&family=Manrope:wght@300;400;500;600&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;600&family=Libre+Baskerville:wght@400;700&family=Cormorant+Infant:wght@400;500&family=Lora:wght@400;600&family=Bodoni+Moda:opsz,wght@6..96,400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Allura&family=Alex+Brush&family=Parisienne&family=Pinyon+Script&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -562,6 +563,72 @@
   font-family: "Inter", system-ui, sans-serif;
 }
 
+    /* ===== Comparador de scripts elegantes ===== */
+
+#script-comparison{
+  padding: 40px 0;
+}
+
+.script-sample{
+  max-width: 760px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.script-sample h2{
+  font-size: clamp(48px, 7vw, 82px);
+  font-weight: 400;
+  margin: 0 0 6px;
+  line-height: 1.05;
+}
+
+.script-sample .date{
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.script-sample p{
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+}
+
+.script-sample .label{
+  display:block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #888;
+}
+
+/* ===== Tipografías ===== */
+
+.great-vibes h2{
+  font-family: "Great Vibes", cursive;
+  letter-spacing: 0.02em;
+}
+
+.allura h2{
+  font-family: "Allura", cursive;
+  letter-spacing: 0.01em;
+}
+
+.alex-brush h2{
+  font-family: "Alex Brush", cursive;
+}
+
+.parisienne h2{
+  font-family: "Parisienne", cursive;
+}
+
+.pinyon h2{
+  font-family: "Pinyon Script", cursive;
+}
+
 
   </style>
 </head>
@@ -702,6 +769,47 @@
       </p>
       <span class="label">Bodoni Moda + Inter</span>
     </div>
+
+    <section id="script-comparison">
+  <div class="container">
+
+    <div class="script-sample great-vibes">
+      <h2>Belén y Javier</h2>
+      <div class="date">05 · 09 · 2026</div>
+      <p>Y queremos celebrarlo contigo.</p>
+      <span class="label">Great Vibes</span>
+    </div>
+
+    <div class="script-sample allura">
+      <h2>Belén y Javier</h2>
+      <div class="date">05 · 09 · 2026</div>
+      <p>Y queremos celebrarlo contigo.</p>
+      <span class="label">Allura</span>
+    </div>
+
+    <div class="script-sample alex-brush">
+      <h2>Belén y Javier</h2>
+      <div class="date">05 · 09 · 2026</div>
+      <p>Y queremos celebrarlo contigo.</p>
+      <span class="label">Alex Brush</span>
+    </div>
+
+    <div class="script-sample parisienne">
+      <h2>Belén y Javier</h2>
+      <div class="date">05 · 09 · 2026</div>
+      <p>Y queremos celebrarlo contigo.</p>
+      <span class="label">Parisienne</span>
+    </div>
+
+    <div class="script-sample pinyon">
+      <h2>Belén y Javier</h2>
+      <div class="date">05 · 09 · 2026</div>
+      <p>Y queremos celebrarlo contigo.</p>
+      <span class="label">Pinyon Script</span>
+    </div>
+
+  </div>
+</section>
 
 
   </div>
