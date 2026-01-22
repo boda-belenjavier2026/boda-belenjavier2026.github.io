@@ -106,29 +106,34 @@
       .menu-toggle{display:block;}
     }
 
-    /* HERO */
+    /* HERO: ocupa el alto de la pantalla para que lo primero sea foto + título + fecha */
     .hero{
-      padding: 0 0 10px;
-      color:#fff;
+      min-height: 100svh; /* mejor en móvil que 100vh */
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding: 12px 0 22px;
     }
 
-    /* ✅ Hero con imagen real centrada y con tamaño controlado */
+    /* Imagen centrada y controlada (sin comerse la pantalla) */
     .hero-photo{
       max-width: var(--maxw);
-      margin: 18px auto 0;
+      margin: 10px auto 0;
       width: calc(100% - 40px);
       display:flex;
       justify-content:center;
       align-items:center;
     }
     .hero-photo img{
-      width: min(560px, 92vw);   /* <-- tamaño de la imagen (ajústalo si quieres) */
+      width: min(560px, 92vw);
+      max-height: 46svh;
       height: auto;
       display:block;
+      object-fit:contain;
     }
 
     .hero-content{
-      padding: 14px 20px 24px; /* un pelín más compacta tras la imagen */
+      padding: 10px 20px 0;
       text-align:center;
       color: var(--ink);
     }
@@ -136,7 +141,7 @@
     .hero-content h1{
       font-family:"Great Vibes","Playfair Display",serif;
       font-size:clamp(44px,7vw,78px);
-      margin: 6px 0 10px;
+      margin: 10px 0 8px;
       font-weight:400;
       letter-spacing:.3px;
       line-height:1;
@@ -159,13 +164,32 @@
       border-radius:999px;
       font-weight:600;
       font-size:14px;
+      box-shadow: var(--shadow);
     }
 
+    .scroll-hint{
+      margin-top: 18px;
+      font-family: Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+      opacity:.9;
+      user-select:none;
+    }
+    .scroll-hint .arrow{
+      font-size: 16px;
+      transform: translateY(-1px);
+    }
+
+    /* Countdown (lo dejamos para “después”, al empezar a scrollear) */
     .countdown{
       display:flex;
       gap:14px;
       justify-content:center;
-      margin-top:18px;
+      margin-top:12px;
       flex-wrap:wrap;
     }
     .cd-card{
@@ -181,6 +205,10 @@
 
     /* Contador en móvil: 4 en la misma línea */
     @media (max-width: 480px){
+      .hero-photo img{
+        width: min(420px, 92vw);
+        max-height: 44svh;
+      }
       .countdown{
         display:grid;
         grid-template-columns: repeat(4, 1fr);
@@ -197,16 +225,11 @@
       }
       .cd-card strong{font-size:16px}
       .cd-card span{font-size:11px}
-
-      .hero-photo img{
-        width: min(420px, 92vw); /* un pelín más pequeña en móvil */
-      }
     }
 
     /* Secciones más compactas */
     section{padding:18px 0}
 
-    /* Quitar cuadros blancos (cards transparentes) */
     .card{
       background: transparent;
       box-shadow: none;
@@ -293,8 +316,6 @@
       border-radius:12px;
       padding:14px 16px;
       background:rgba(255,255,255,.45);
-
-      /* ✅ más estrecho para que no “ocupen todo” */
       max-width: 760px;
       margin-left:auto;
       margin-right:auto;
@@ -306,21 +327,13 @@
     footer{padding:42px 0;background:rgba(250,249,246,.6);border-top:1px solid #eee}
     .foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;font-size:14px}
     small{color:var(--muted)}
-    .chip{display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(243,241,236,.7);font-size:13px}
 
     .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease, transform .5s ease}
     .reveal.visible{opacity:1;transform:none}
 
     /* Formulario RSVP */
     .form{display:grid;gap:14px;margin-top:14px;max-width:760px;margin-left:auto;margin-right:auto}
-
-    /* Preguntas centradas */
-    .field{
-      display:grid;
-      gap:6px;
-      text-align:center;
-    }
-
+    .field{display:grid;gap:6px;text-align:center;}
     label{font-weight:600}
 
     input[type="text"], input[type="tel"], textarea{
@@ -331,7 +344,6 @@
       background:rgba(255,255,255,.55);
       font:inherit;
       outline:none;
-
       margin-left:auto;
       margin-right:auto;
       max-width:760px;
@@ -339,12 +351,7 @@
     textarea{min-height:110px;resize:vertical}
     input:focus, textarea:focus{border-color:rgba(58,143,122,.55); box-shadow:0 0 0 4px rgba(58,143,122,.12)}
 
-    .options{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:center;
-    }
+    .options{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
     .opt{
       display:flex;align-items:center;gap:8px;
       padding:10px 12px;border:1px solid rgba(0,0,0,.12);border-radius:12px;
@@ -365,24 +372,18 @@
       margin: 0 auto;
       text-align:left;
     }
-    .iban-box summary{
-      cursor:pointer;
-      font-weight:600;
-      list-style:none;
-    }
+    .iban-box summary{cursor:pointer;font-weight:600;list-style:none;}
     .iban-box summary::-webkit-details-marker{display:none;}
     .iban-content{margin-top:10px}
 
     /* Contenido centrado (global) */
     main{ text-align:center; }
-
     main ul{
       display:inline-block;
       text-align:left;
       margin: 10px auto 0;
       padding-left: 22px;
     }
-
     main p{ margin-left:auto; margin-right:auto; }
 
     .grid{ justify-items:center; }
@@ -392,7 +393,7 @@
       max-width: 760px;
     }
 
-    /* ✅ Ceremonia y celebración centrados aunque ya no haya 2 columnas reales */
+    /* Ceremonia y celebración centrados (1 columna) */
     #ceremonia .grid-2,
     #celebracion .grid-2{
       grid-template-columns: 1fr;
@@ -419,8 +420,8 @@
     </div>
   </nav>
 
+  <!-- HERO: lo que se ve al entrar -->
   <header class="hero" id="inicio">
-    <!-- ✅ Imagen centrada al principio -->
     <div class="hero-photo" aria-label="Ilustración de la Basílica de Atocha">
       <img src="/img/atocha-cari.png" alt="Ilustración de la Basílica de Nuestra Señora de Atocha" />
     </div>
@@ -431,17 +432,28 @@
         <p>Y queremos celebrarlo contigo. Guarda la fecha y encuentra aquí toda la información.</p>
         <div class="date-pill" id="wedding-date-pill">Sábado, 05 de septiembre de 2026 · 18:00</div>
 
-        <div class="countdown" aria-live="polite" aria-label="Cuenta atrás para la boda">
-          <div class="cd-card"><strong id="d">—</strong><span>días</span></div>
-          <div class="cd-card"><strong id="h">—</strong><span>horas</span></div>
-          <div class="cd-card"><strong id="m">—</strong><span>min</span></div>
-          <div class="cd-card"><strong id="s">—</strong><span>s</span></div>
+        <div class="scroll-hint" aria-hidden="true">
+          <span class="arrow">↓</span><span>Desliza para ver el resto</span>
         </div>
       </div>
     </div>
   </header>
 
   <main>
+    <!-- Cuenta atrás pasa a estar “después” del hero (ya al empezar a scrollear) -->
+    <section id="cuenta-atras">
+      <div class="container">
+        <div class="card reveal">
+          <div class="countdown" aria-live="polite" aria-label="Cuenta atrás para la boda">
+            <div class="cd-card"><strong id="d">—</strong><span>días</span></div>
+            <div class="cd-card"><strong id="h">—</strong><span>horas</span></div>
+            <div class="cd-card"><strong id="m">—</strong><span>min</span></div>
+            <div class="cd-card"><strong id="s">—</strong><span>s</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="detalles">
       <div class="container">
         <div class="card reveal">
