@@ -15,6 +15,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Libre+Baskerville:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&family=DM+Serif+Display&family=Manrope:wght@300;400;500;600&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -459,6 +460,74 @@
       text-align: center;
     }
 
+      /* ===== Comparador de tipografías ===== */
+
+    #font-comparison{
+      padding: 40px 0;
+    }
+    
+    .font-sample{
+      max-width: 760px;
+      margin: 0 auto 36px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      text-align: center;
+    }
+    
+    .font-sample h2{
+      margin-bottom: 10px;
+    }
+    
+    .font-sample p{
+      margin: 0 auto;
+      max-width: 720px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    
+    .font-sample .label{
+      display:block;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #777;
+      letter-spacing: .04em;
+    }
+    
+    /* === Combinaciones === */
+    
+    .playfair h2{
+      font-family: "Playfair Display", serif;
+    }
+    .playfair p{
+      font-family: "Libre Baskerville", serif;
+    }
+    
+    .cormorant h2{
+      font-family: "Cormorant Garamond", serif;
+    }
+    .cormorant p{
+      font-family: "Inter", system-ui, sans-serif;
+    }
+    
+    .ebgaramond h2,
+    .ebgaramond p{
+      font-family: "EB Garamond", serif;
+    }
+    
+    .dmserif h2{
+      font-family: "DM Serif Display", serif;
+    }
+    .dmserif p{
+      font-family: "Manrope", sans-serif;
+    }
+    
+    .playfair-inter h2{
+      font-family: "Playfair Display", serif;
+    }
+    .playfair-inter p{
+      font-family: "Inter", system-ui, sans-serif;
+    }
+
   </style>
 </head>
 
@@ -503,6 +572,57 @@
         Y queremos celebrarlo contigo. Guarda la fecha y encuentra aquí toda la información.
       </p>
     </div>
+  </div>
+</section>
+
+  <section id="font-comparison">
+  <div class="container">
+
+    <div class="font-sample playfair">
+      <h2>¡Nos casamos!</h2>
+      <p>
+        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
+        rodeados de familia, amigos y muchas ganas de brindar.
+      </p>
+      <span class="label">Playfair Display + Libre Baskerville</span>
+    </div>
+
+    <div class="font-sample cormorant">
+      <h2>¡Nos casamos!</h2>
+      <p>
+        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
+        rodeados de familia, amigos y muchas ganas de brindar.
+      </p>
+      <span class="label">Cormorant Garamond + Inter</span>
+    </div>
+
+    <div class="font-sample ebgaramond">
+      <h2>¡Nos casamos!</h2>
+      <p>
+        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
+        rodeados de familia, amigos y muchas ganas de brindar.
+      </p>
+      <span class="label">EB Garamond (todo)</span>
+    </div>
+
+    <div class="font-sample dmserif">
+      <h2>¡Nos casamos!</h2>
+      <p>
+        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
+        rodeados de familia, amigos y muchas ganas de brindar.
+      </p>
+      <span class="label">DM Serif Display + Manrope</span>
+    </div>
+
+    <div class="font-sample playfair-inter">
+      <h2>¡Nos casamos!</h2>
+      <p>
+        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
+        rodeados de familia, amigos y muchas ganas de brindar.
+      </p>
+      <span class="label">Playfair Display + Inter</span>
+    </div>
+
   </div>
 </section>
 
