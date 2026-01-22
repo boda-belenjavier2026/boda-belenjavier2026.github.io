@@ -106,83 +106,89 @@
       .menu-toggle{display:block;}
     }
 
-    /* HERO: ocupa el alto de la pantalla para que lo primero sea foto + título + fecha */
-    .hero{
-      min-height: 100svh; /* mejor en móvil que 100vh */
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      padding: 12px 0 22px;
-    }
+    /* HERO: sigue ocupando la pantalla, pero con menos “padding” */
+.hero{
+  min-height: 100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding: 4px 0 10px;   /* antes: 12px 0 22px */
+}
 
-    /* Imagen centrada y controlada (sin comerse la pantalla) */
-    .hero-photo{
-      max-width: var(--maxw);
-      margin: 10px auto 0;
-      width: calc(100% - 40px);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-    .hero-photo img{
-      width: min(560px, 92vw);
-      max-height: 46svh;
-      height: auto;
-      display:block;
-      object-fit:contain;
-    }
+/* Menos margen superior y más protagonista */
+.hero-photo{
+  max-width: var(--maxw);
+  margin: 4px auto 0;     /* antes: 10px auto 0 */
+  width: calc(100% - 40px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
 
-    .hero-content{
-      padding: 10px 20px 0;
-      text-align:center;
-      color: var(--ink);
-    }
+/* FOTO MUCHO MÁS GRANDE */
+.hero-photo img{
+  width: min(860px, 96vw);  /* antes: 560px */
+  max-height: 62svh;        /* antes: 46svh */
+  height: auto;
+  display:block;
+  object-fit: contain;
+}
 
-    .hero-content h1{
-      font-family:"Great Vibes","Playfair Display",serif;
-      font-size:clamp(44px,7vw,78px);
-      margin: 10px 0 8px;
-      font-weight:400;
-      letter-spacing:.3px;
-      line-height:1;
-      color: var(--ink);
-    }
+/* Menos espacio entre foto y texto */
+.hero-content{
+  padding: 6px 20px 0;   /* antes: 10px 20px 0 */
+  text-align:center;
+  color: var(--ink);
+}
 
-    .hero-content p{
-      margin:0 auto;
-      max-width: 760px;
-      font-size:clamp(16px,2.2vw,20px);
-      color: #2b2b2b;
-    }
+/* Título con menos “aire” */
+.hero-content h1{
+  margin: 6px 0 6px;     /* antes: 10px 0 8px */
+}
 
-    .date-pill{
-      display:inline-block;
-      margin-top:16px;
-      background:rgba(58,143,122,.95);
-      color:white;
-      padding:10px 16px;
-      border-radius:999px;
-      font-weight:600;
-      font-size:14px;
-      box-shadow: var(--shadow);
-    }
+/* Fecha un pelín más pegada */
+.date-pill{
+  margin-top: 12px;      /* antes: 16px */
+}
 
-    .scroll-hint{
-      margin-top: 18px;
-      font-family: Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      font-size: 13px;
-      color: var(--muted);
-      display:flex;
-      gap:8px;
-      align-items:center;
-      justify-content:center;
-      opacity:.9;
-      user-select:none;
-    }
-    .scroll-hint .arrow{
-      font-size: 16px;
-      transform: translateY(-1px);
-    }
+/* Pista de scroll más cerca */
+.scroll-hint{
+  margin-top: 12px;      /* antes: 18px */
+}
+
+/* ====== MÓVIL: también más grande, pero controlando que no “empuje” el texto ====== */
+@media (max-width: 480px){
+  .hero{
+    padding: 2px 0 8px;
+  }
+
+  .hero-photo{
+    margin-top: 2px;
+    width: calc(100% - 28px); /* un pelín más ancho en móvil */
+  }
+
+  .hero-photo img{
+    width: min(520px, 96vw);  /* antes: 420px */
+    max-height: 56svh;        /* antes: 44svh */
+  }
+
+  .hero-content{
+    padding-top: 6px;
+  }
+
+  .hero-content h1{
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+
+  .date-pill{
+    margin-top: 10px;
+  }
+
+  .scroll-hint{
+    margin-top: 10px;
+  }
+}
 
     /* Countdown (lo dejamos para “después”, al empezar a scrollear) */
     .countdown{
