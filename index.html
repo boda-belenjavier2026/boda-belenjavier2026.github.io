@@ -1,22 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-  <!-- OVERLAY INVITACIÓN -->
-<div id="invite-overlay" class="invite-overlay" aria-hidden="false">
-  <div class="invite-card">
-    <div class="invite-text">
-      <div class="invite-title">Belén & Javier</div>
-      <div class="invite-subtitle">Pulsa para abrir la invitación</div>
-      <button id="open-invite" class="btn">Abrir</button>
-    </div>
-
-    <!-- Vídeo: oculto hasta que pulses -->
-    <video id="envelope-video" class="invite-video" playsinline preload="auto">
-      <source src="/video/sobre.mp4" type="video/mp4">
-      Tu navegador no soporta vídeo HTML5.
-    </video>
-  </div>
-</div>
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,14 +10,11 @@
   <meta property="og:title" content="Belén & Javier — Nuestra Boda" />
   <meta property="og:description" content="Toda la información para el gran día: horarios, lugar, confirmación de asistencia y preguntas frecuentes." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/img/atocha-cari2.png" />
+  <meta property="og:image" content="/img/iglesia-cabecera.jpg" />
   <meta property="og:locale" content="es_ES" />
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Libre+Baskerville:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&family=DM+Serif+Display&family=Manrope:wght@300;400;500;600&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;600&family=Libre+Baskerville:wght@400;700&family=Cormorant+Infant:wght@400;500&family=Lora:wght@400;600&family=Bodoni+Moda:opsz,wght@6..96,400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Allura&family=Alex+Brush&family=Parisienne&family=Pinyon+Script&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -51,22 +31,22 @@
     *{box-sizing:border-box;}
 
     html,body{
-      margin:0;padding:0;
+      margin:0;
+      padding:0;
       color:var(--ink);
       font-family:"EB Garamond", Georgia, serif;
       scroll-behavior:smooth;
-      font-size: 20px;
-      background: var(--bg);
+      font-size:20px;
+      background:var(--bg);
     }
 
-    /* Fondo de textura (papel) */
     body{
       position:relative;
       min-height:100vh;
-      background-image: url('/img/fondobeige.png');
-      background-repeat: repeat;
-      background-size: 900px auto;
-      background-color: var(--bg);
+      background-image:url('/img/fondobeige.png');
+      background-repeat:repeat;
+      background-size:900px auto;
+      background-color:var(--bg);
     }
 
     a{color:var(--brand);text-decoration:none}
@@ -74,18 +54,96 @@
     img{max-width:100%;height:auto;display:block}
     .container{max-width:var(--maxw);padding:0 20px;margin:0 auto}
 
+    /* OVERLAY INVITACIÓN */
+    .invite-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(255, 250, 243, 0.96);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:20px;
+      transition:opacity .45s ease, visibility .45s ease;
+    }
+
+    .invite-overlay.hidden{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+    }
+
+    .invite-card{
+      text-align:center;
+      max-width:420px;
+      width:100%;
+      padding:30px 24px;
+    }
+
+    .invite-title{
+      font-family:"Great Vibes","Playfair Display",serif;
+      font-size:clamp(44px, 8vw, 68px);
+      line-height:1;
+      margin-bottom:8px;
+    }
+
+    .invite-subtitle{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-size:15px;
+      color:var(--muted);
+      margin-bottom:24px;
+    }
+
+    .envelope-button{
+      width:120px;
+      height:120px;
+      border:none;
+      background:transparent;
+      padding:0;
+      cursor:pointer;
+      margin:0 auto 14px;
+      transition:transform .2s ease;
+      display:block;
+    }
+
+    .envelope-button:hover{
+      transform:scale(1.05);
+    }
+
+    .envelope-button img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      filter:drop-shadow(0 10px 18px rgba(0,0,0,.12));
+    }
+
+    .open-text{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-size:14px;
+      font-weight:600;
+      color:var(--brand);
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
     /* NAV */
     .nav{
-      position:sticky;top:0;
+      position:sticky;
+      top:0;
       background:rgba(255,253,248,.9);
       backdrop-filter:saturate(120%) blur(8px);
       border-bottom:1px solid #eee;
       z-index:50;
     }
+
     .nav .inner{
-      display:flex;align-items:center;justify-content:space-between;height:64px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:64px;
       position:relative;
     }
+
     .brand{
       font-family:"Great Vibes","Playfair Display",serif;
       font-weight:400;
@@ -94,7 +152,6 @@
       line-height:1;
     }
 
-    /* Mantener el menú en Inter */
     .menu{
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       display:flex;
@@ -104,106 +161,98 @@
       font-weight:500;
     }
 
-    /* Responsive nav */
     .menu-toggle{
       display:none;
-      background:none;border:none;
-      font-size:26px;line-height:1;
+      background:none;
+      border:none;
+      font-size:26px;
+      line-height:1;
       cursor:pointer;
     }
+
     @media(max-width:768px){
       .menu{
         position:absolute;
-        top:64px;left:0;right:0;
+        top:64px;
+        left:0;
+        right:0;
         flex-direction:column;
         background:rgba(255,253,248,.97);
         padding:12px 20px 16px;
         border-bottom:1px solid #eee;
         display:none;
       }
+
       .menu.open{display:flex;}
       .menu a{padding:4px 0;}
       .menu-toggle{display:block;}
     }
 
-    /* ================= HERO (con NAV siempre visible) ================= */
-    /* Objetivo: en la primera pantalla quepan imagen + “¡Nos casamos!” + fecha */
-    
+    /* HERO */
     .hero{
-      /* 100svh menos el nav fijo (64px) */
-      min-height: calc(100svh - 64px);
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      padding: 0;
+      padding:28px 0 10px;
+      text-align:center;
     }
-    
-    /* Imagen protagonista, pero sin comerse el texto */
-    .hero-photo{
-      flex: 1;
-      max-width: var(--maxw);
-      width: calc(100% - 40px);
-      margin: 0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+
+    .hero-inner{
+      max-width:920px;
+      margin:0 auto;
     }
-    
-    .hero-photo img{
-      width: 100%;
-      max-width: 980px;       /* ⬅️ reduce tamaño en escritorio */
-      height: 100%;
-      max-height: 62svh;      /* ⬅️ deja hueco para título + fecha */
-      object-fit: contain;
+
+    .hero-image-wrap{
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      background:#f5f1ea;
+    }
+
+    .hero-image{
+      width:100%;
+      height:clamp(280px, 48vw, 560px);
+      object-fit:cover;
+      object-position:center;
       display:block;
     }
 
-    @media (max-width: 480px){
-      .hero-photo img{ max-height: 52svh; } /* móvil */
-    }
-    
-    /* Texto abajo, compacto */
     .hero-content{
-      padding: 10px 20px 14px;
+      padding:28px 10px 6px;
       text-align:center;
-      color: var(--ink);
     }
-    
+
     .hero-content h1{
       font-family:"Great Vibes","Playfair Display",serif;
-      font-size:clamp(44px,7vw,78px);
-      margin: 6px 0 6px;
+      font-size:clamp(52px,7vw,86px);
+      margin:0 0 8px;
       font-weight:400;
-      letter-spacing:.3px;
       line-height:1;
-      color: var(--ink);
+      color:var(--ink);
     }
-    
+
     .hero-content p{
       margin:0 auto;
-      max-width: 760px;
-      font-size:clamp(16px,2.2vw,20px);
-      color: #2b2b2b;
+      max-width:760px;
+      font-size:clamp(17px,2.2vw,22px);
+      color:#2b2b2b;
     }
-    
+
     .date-pill{
       display:inline-block;
-      margin-top:10px;
+      margin-top:16px;
       background:rgba(58,143,122,.95);
       color:white;
-      padding:10px 16px;
+      padding:11px 18px;
       border-radius:999px;
       font-weight:600;
       font-size:14px;
-      box-shadow: var(--shadow);
+      box-shadow:var(--shadow);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
-    
-    /* (Opcional) si quieres mantener el “desliza” en la primera pantalla */
+
     .scroll-hint{
-      margin-top: 8px;
-      font-family: Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      font-size: 13px;
-      color: var(--muted);
+      margin-top:12px;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-size:13px;
+      color:var(--muted);
       display:flex;
       gap:8px;
       align-items:center;
@@ -211,45 +260,27 @@
       opacity:.9;
       user-select:none;
     }
+
     .scroll-hint .arrow{
-      font-size: 12px;
-      transform: translateY(-1px);
+      font-size:12px;
+      transform:translateY(-1px);
     }
-    
-    /* ================= MÓVIL: mismo formato, ajustado para que quepa todo ================= */
+
     @media (max-width: 480px){
       .hero{
-        min-height: calc(100svh - 64px);
+        padding-top:16px;
       }
-    
-      .hero-photo{
-        width: calc(100% - 24px);
+
+      .hero-image{
+        height:260px;
       }
-    
-      .hero-photo img{
-        max-width: 520px;
-        max-height: 52svh;    /* ⬅️ clave: asegura hueco para título + fecha */
-      }
-    
+
       .hero-content{
-        padding: 8px 14px 12px;
-      }
-    
-      .date-pill{
-        font-size: 13px;
-        padding: 9px 14px;
-      }
-    
-      .scroll-hint{
-        font-size: 12px;
-        margin-top: 6px;
+        padding-top:22px;
       }
     }
 
-
-
-
-    /* Countdown (lo dejamos para “después”, al empezar a scrollear) */
+    /* Countdown */
     .countdown{
       display:flex;
       gap:14px;
@@ -257,49 +288,53 @@
       margin-top:12px;
       flex-wrap:wrap;
     }
+
     .cd-card{
       background:rgba(255,255,255,.75);
       color:var(--ink);
-      border: 1px solid rgba(0,0,0,.08);
+      border:1px solid rgba(0,0,0,.08);
       border-radius:var(--radius);
       padding:14px 18px;
       min-width:74px;
+      box-shadow:var(--shadow);
     }
-    .cd-card strong{display:block;font-size:20px}
-    .cd-card span{font-size:12px;color:var(--muted)}
 
-    /* Contador en móvil: 4 en la misma línea */
+    .cd-card strong{display:block;font-size:20px}
+    .cd-card span{
+      font-size:12px;
+      color:var(--muted);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
     @media (max-width: 480px){
-      .hero-photo img{
-        width: min(420px, 92vw);
-        max-height: 44svh;
-      }
       .countdown{
         display:grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-        width: 100%;
-        max-width: 420px;
+        grid-template-columns:repeat(4, 1fr);
+        gap:8px;
+        width:100%;
+        max-width:420px;
         margin-left:auto;
         margin-right:auto;
       }
+
       .cd-card{
-        min-width: 0;
-        padding: 10px 8px;
-        border-radius: 14px;
+        min-width:0;
+        padding:10px 8px;
+        border-radius:14px;
       }
+
       .cd-card strong{font-size:16px}
       .cd-card span{font-size:11px}
     }
 
-    /* Secciones más compactas */
-    section{padding:18px 0}
+    section{padding:28px 0}
 
     .card{
-      background: transparent;
-      box-shadow: none;
-      border-radius: 0;
-      padding: 8px 0;
+      background:rgba(255,255,255,.32);
+      box-shadow:none;
+      border-radius:22px;
+      padding:24px 20px;
+      backdrop-filter: blur(3px);
     }
 
     .grid{display:grid;gap:22px}
@@ -310,12 +345,14 @@
 
     h2{
       font-family:"Great Vibes","Playfair Display",serif;
-      font-size:clamp(32px,4.6vw,46px);
-      margin:0 0 12px;
+      font-size:clamp(34px,4.6vw,48px);
+      margin:0 0 14px;
       font-weight:400;
       letter-spacing:.2px;
       line-height:1.05;
+      text-align:center;
     }
+
     .muted{color:var(--muted)}
 
     .btn{
@@ -330,8 +367,14 @@
       cursor:pointer;
       text-align:center;
       font-size:14px;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
-    .btn:hover{filter:brightness(1.05);text-decoration:none;}
+
+    .btn:hover{
+      filter:brightness(1.05);
+      text-decoration:none;
+    }
+
     .btn-outline{
       background:transparent;
       color:var(--brand);
@@ -339,14 +382,13 @@
       box-shadow:none;
     }
 
-    /* Timeline (centrada) */
+    /* Timeline */
     .timeline{
       display:flex;
       flex-direction:column;
       align-items:center;
       position:relative;
     }
-    .timeline::before{display:none;}
 
     .tl-item{
       position:relative;
@@ -359,19 +401,17 @@
       margin-right:auto;
     }
 
-    .dot{display:none;}
-
     .tl-icon{
       position:static;
-      margin: 0 auto 10px;
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.45);
-      border: 1px solid rgba(0,0,0,.10);
+      margin:0 auto 10px;
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      background:rgba(255,255,255,.45);
+      border:1px solid rgba(0,0,0,.10);
       display:grid;
       place-items:center;
-      font-size: 22px;
+      font-size:22px;
       line-height:1;
     }
 
@@ -381,24 +421,66 @@
       border-radius:12px;
       padding:14px 16px;
       background:rgba(255,255,255,.45);
-      max-width: 760px;
+      max-width:760px;
       margin-left:auto;
       margin-right:auto;
     }
+
     .faq details+details{margin-top:12px}
-    .faq summary{cursor:pointer;font-weight:600;list-style:none}
+    .faq summary{
+      cursor:pointer;
+      font-weight:600;
+      list-style:none;
+    }
+
     .faq summary::-webkit-details-marker{display:none;}
 
-    footer{padding:42px 0;background:rgba(250,249,246,.6);border-top:1px solid #eee}
-    .foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;font-size:14px}
+    footer{
+      padding:42px 0;
+      background:rgba(250,249,246,.6);
+      border-top:1px solid #eee;
+      margin-top:10px;
+    }
+
+    .foot{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      font-size:14px;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
     small{color:var(--muted)}
 
-    .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease, transform .5s ease}
-    .reveal.visible{opacity:1;transform:none}
+    .reveal{
+      opacity:0;
+      transform:translateY(10px);
+      transition:opacity .5s ease, transform .5s ease;
+    }
+
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
 
     /* Formulario RSVP */
-    .form{display:grid;gap:14px;margin-top:14px;max-width:760px;margin-left:auto;margin-right:auto}
-    .field{display:grid;gap:6px;text-align:center;}
+    .form{
+      display:grid;
+      gap:14px;
+      margin-top:14px;
+      max-width:760px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .field{
+      display:grid;
+      gap:6px;
+      text-align:center;
+    }
+
     label{font-weight:600}
 
     input[type="text"], input[type="tel"], textarea{
@@ -406,321 +488,128 @@
       padding:12px 12px;
       border-radius:12px;
       border:1px solid rgba(0,0,0,.12);
-      background:rgba(255,255,255,.55);
+      background:rgba(255,255,255,.75);
       font:inherit;
       outline:none;
       margin-left:auto;
       margin-right:auto;
       max-width:760px;
     }
-    textarea{min-height:110px;resize:vertical}
-    input:focus, textarea:focus{border-color:rgba(58,143,122,.55); box-shadow:0 0 0 4px rgba(58,143,122,.12)}
 
-    .options{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
-    .opt{
-      display:flex;align-items:center;gap:8px;
-      padding:10px 12px;border:1px solid rgba(0,0,0,.12);border-radius:12px;
-      background:rgba(255,255,255,.45);
+    textarea{min-height:110px;resize:vertical}
+
+    input:focus, textarea:focus{
+      border-color:rgba(58,143,122,.55);
+      box-shadow:0 0 0 4px rgba(58,143,122,.12)
     }
+
+    .options{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+    }
+
+    .opt{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border:1px solid rgba(0,0,0,.12);
+      border-radius:12px;
+      background:rgba(255,255,255,.55);
+    }
+
     .opt input{transform:translateY(1px)}
-    .helper{font-size:13px;color:var(--muted);text-align:center}
+
+    .helper{
+      font-size:13px;
+      color:var(--muted);
+      text-align:center;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
     .success{display:none;margin-top:10px}
     .success.show{display:block}
 
-    /* Desplegable IBAN */
+    /* IBAN */
     .iban-box{
-      border: 1px solid rgba(0,0,0,.10);
-      border-radius: 14px;
-      padding: 10px 12px;
-      background: rgba(255,255,255,.30);
-      max-width: 560px;
-      margin: 0 auto;
+      border:1px solid rgba(0,0,0,.10);
+      border-radius:14px;
+      padding:10px 12px;
+      background:rgba(255,255,255,.30);
+      max-width:560px;
+      margin:0 auto;
       text-align:left;
     }
-    .iban-box summary{cursor:pointer;font-weight:600;list-style:none;}
+
+    .iban-box summary{
+      cursor:pointer;
+      font-weight:600;
+      list-style:none;
+    }
+
     .iban-box summary::-webkit-details-marker{display:none;}
     .iban-content{margin-top:10px}
 
-    /* Contenido centrado (global) */
-    main{ text-align:center; }
+    /* Centrado general */
+    main{text-align:center;}
+
     main ul{
       display:inline-block;
       text-align:left;
-      margin: 10px auto 0;
-      padding-left: 22px;
+      margin:10px auto 0;
+      padding-left:22px;
     }
-    main p{ margin-left:auto; margin-right:auto; }
 
-    .grid{ justify-items:center; }
+    main p{margin-left:auto;margin-right:auto;}
+    .grid{justify-items:center;}
 
     .grid-2 > *{
       width:100%;
-      max-width: 760px;
+      max-width:760px;
     }
 
-    /* Ceremonia y celebración centrados (1 columna) */
     #ceremonia .grid-2,
     #celebracion .grid-2{
-      grid-template-columns: 1fr;
+      grid-template-columns:1fr;
       justify-content:center;
       justify-items:center;
     }
 
-    /* Intro post-hero (texto que aparece al hacer scroll) */
     #intro{
-      padding: 14px 0 0; /* pequeñito para que no haya “salto” raro */
+      padding:12px 0 0;
     }
-    
+
     .intro-text{
-      margin: 0 auto;
-      max-width: 760px;
-      font-size: clamp(16px, 2.2vw, 20px);
-      color: #2b2b2b;
-      text-align: center;
+      margin:0 auto;
+      max-width:760px;
+      font-size:clamp(16px, 2.2vw, 20px);
+      color:#2b2b2b;
+      text-align:center;
     }
-
-      /* ===== Comparador de tipografías ===== */
-
-    #font-comparison{
-      padding: 40px 0;
-    }
-    
-    .font-sample{
-      max-width: 760px;
-      margin: 0 auto 36px;
-      padding-bottom: 22px;
-      border-bottom: 1px solid rgba(0,0,0,.08);
-      text-align: center;
-    }
-    
-    .font-sample h2{
-      margin-bottom: 10px;
-    }
-    
-    .font-sample p{
-      margin: 0 auto;
-      max-width: 720px;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-    
-    .font-sample .label{
-      display:block;
-      margin-top: 10px;
-      font-size: 12px;
-      color: #777;
-      letter-spacing: .04em;
-    }
-    
-    /* === Combinaciones === */
-    
-    .playfair h2{
-      font-family: "Playfair Display", serif;
-    }
-    .playfair p{
-      font-family: "Libre Baskerville", serif;
-    }
-    
-    .cormorant h2{
-      font-family: "Cormorant Garamond", serif;
-    }
-    .cormorant p{
-      font-family: "Inter", system-ui, sans-serif;
-    }
-    
-    .ebgaramond h2,
-    .ebgaramond p{
-      font-family: "EB Garamond", serif;
-    }
-    
-    .dmserif h2{
-      font-family: "DM Serif Display", serif;
-    }
-    .dmserif p{
-      font-family: "Manrope", sans-serif;
-    }
-    
-    .playfair-inter h2{
-      font-family: "Playfair Display", serif;
-    }
-    .playfair-inter p{
-      font-family: "Inter", system-ui, sans-serif;
-    }
-
-    /* ===== Nuevas combinaciones elegantes ===== */
-
-.fraunces h2{
-  font-family: "Fraunces", serif;
-}
-.fraunces p{
-  font-family: "Inter", system-ui, sans-serif;
-}
-
-.libre h2,
-.libre p{
-  font-family: "Libre Baskerville", serif;
-}
-
-.cormorant-infant h2{
-  font-family: "Cormorant Infant", serif;
-}
-.cormorant-infant p{
-  font-family: "Inter", system-ui, sans-serif;
-}
-
-.lora h2,
-.lora p{
-  font-family: "Lora", serif;
-}
-
-.bodoni h2{
-  font-family: "Bodoni Moda", serif;
-}
-.bodoni p{
-  font-family: "Inter", system-ui, sans-serif;
-}
-
-    /* ===== Comparador de scripts elegantes ===== */
-
-#script-comparison{
-  padding: 40px 0;
-}
-
-.script-sample{
-  max-width: 760px;
-  margin: 0 auto 48px;
-  text-align: center;
-}
-
-.script-sample h2{
-  font-size: clamp(48px, 7vw, 82px);
-  font-weight: 400;
-  margin: 0 0 6px;
-  line-height: 1.05;
-}
-
-.script-sample .date{
-  font-family: "Inter", system-ui, sans-serif;
-  font-size: 15px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  color: #555;
-}
-
-.script-sample p{
-  font-family: "Inter", system-ui, sans-serif;
-  font-size: 16px;
-  color: #555;
-  margin: 0;
-}
-
-.script-sample .label{
-  display:block;
-  margin-top: 8px;
-  font-size: 12px;
-  color: #888;
-}
-
-/* ===== Tipografías ===== */
-
-.great-vibes h2{
-  font-family: "Great Vibes", cursive;
-  letter-spacing: 0.02em;
-}
-
-.allura h2{
-  font-family: "Allura", cursive;
-  letter-spacing: 0.01em;
-}
-
-.alex-brush h2{
-  font-family: "Alex Brush", cursive;
-}
-
-.parisienne h2{
-  font-family: "Parisienne", cursive;
-}
-
-.pinyon h2{
-  font-family: "Pinyon Script", cursive;
-}
-
-/* Overlay pantalla completa */
-.invite-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  padding:20px;
-}
-
-.invite-card{
-  width:min(820px, 100%);
-  aspect-ratio: 16 / 9;
-  background:rgba(255,253,248,.92);
-  border-radius:22px;
-  overflow:hidden;
-  position:relative;
-  border:1px solid rgba(0,0,0,.12);
-}
-
-.invite-text{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  text-align:center;
-  padding:24px;
-}
-
-.invite-title{
-  font-size:42px;
-  font-weight:600;
-}
-
-.invite-subtitle{
-  color:rgba(0,0,0,.65);
-}
-
-.invite-video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  pointer-events:none;
-}
-
-/* Cuando se está reproduciendo el vídeo */
-.invite-overlay.playing .invite-text{ opacity:0; transition:opacity .25s ease; }
-.invite-overlay.playing .invite-video{
-  opacity:1;
-  pointer-events:auto;
-  transition:opacity .25s ease;
-}
-
-/* Ocultar overlay al final */
-.invite-overlay.done{
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .45s ease;
-}
   </style>
 </head>
 
 <body>
+  <!-- OVERLAY INVITACIÓN -->
+  <div id="invite-overlay" class="invite-overlay" aria-hidden="false">
+    <div class="invite-card">
+      <div class="invite-title">Belén & Javier</div>
+      <div class="invite-subtitle">Pulsa el sobre para abrir la invitación</div>
+
+      <button id="open-invite" class="envelope-button" aria-label="Abrir invitación">
+        <img src="/img/sobre.png" alt="Sobre para abrir la invitación">
+      </button>
+
+      <div class="open-text">Abrir invitación</div>
+    </div>
+  </div>
+
   <nav class="nav">
     <div class="container inner">
       <div class="brand">Belén & Javier</div>
-      <button class="menu-toggle" aria-label="Abrir menú" id="menu-toggle">☰</button>
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" id="menu-toggle">☰</button>
       <div class="menu" aria-label="Navegación principal" id="main-menu">
         <a href="#inicio">Inicio</a>
         <a href="#detalles">Detalles</a>
@@ -733,174 +622,36 @@
     </div>
   </nav>
 
-<header class="hero" id="inicio">
-  <div class="hero-photo" aria-label="Ilustración de la Basílica de Atocha">
-    <img src="/img/atocha-cari2.png" alt="Ilustración de la Basílica de Nuestra Señora de Atocha" />
-  </div>
+  <header class="hero" id="inicio">
+    <div class="container hero-inner">
+      <div class="hero-image-wrap" aria-label="Foto de la iglesia">
+        <!-- CAMBIA esta ruta por la foto real de la iglesia -->
+        <img class="hero-image" src="/img/iglesia-cabecera.jpg" alt="Iglesia donde se celebrará la boda">
+      </div>
 
-  <div class="hero-content">
-    <div class="container">
-      <h1>¡Nos casamos!</h1>
-      <div class="date-pill" id="wedding-date-pill">Sábado, 05 de septiembre de 2026 · 18:00</div>
+      <div class="hero-content">
+        <h1>¡Nos casamos!</h1>
+        <p>Y queremos celebrarlo contigo. Guarda la fecha y encuentra aquí toda la información para acompañarnos en este día tan especial.</p>
+        <div class="date-pill" id="wedding-date-pill">Sábado, 05 de septiembre de 2026 · 18:00</div>
 
-      <div class="scroll-hint" aria-hidden="true">
-        <span class="arrow">↓</span><span>Desliza para ver el resto</span>
+        <div class="scroll-hint" aria-hidden="true">
+          <span class="arrow">↓</span><span>Desliza para ver el resto</span>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
   <section id="intro">
-  <div class="container">
-    <div class="card reveal">
-      <p class="intro-text">
-        Y queremos celebrarlo contigo. Guarda la fecha y encuentra aquí toda la información.
-      </p>
+    <div class="container">
+      <div class="card reveal">
+        <p class="intro-text">
+          Nos hace muchísima ilusión compartir este día contigo.
+        </p>
+      </div>
     </div>
-  </div>
-</section>
-
-  <section id="font-comparison">
-  <div class="container">
-
-    <div class="font-sample playfair">
-      <h2>¡Nos casamos!</h2>
-      <p>
-        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
-        rodeados de familia, amigos y muchas ganas de brindar.
-      </p>
-      <span class="label">Playfair Display + Libre Baskerville</span>
-    </div>
-
-    <div class="font-sample cormorant">
-      <h2>¡Nos casamos!</h2>
-      <p>
-        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
-        rodeados de familia, amigos y muchas ganas de brindar.
-      </p>
-      <span class="label">Cormorant Garamond + Inter</span>
-    </div>
-
-    <div class="font-sample ebgaramond">
-      <h2>¡Nos casamos!</h2>
-      <p>
-        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
-        rodeados de familia, amigos y muchas ganas de brindar.
-      </p>
-      <span class="label">EB Garamond (todo)</span>
-    </div>
-
-    <div class="font-sample dmserif">
-      <h2>¡Nos casamos!</h2>
-      <p>
-        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
-        rodeados de familia, amigos y muchas ganas de brindar.
-      </p>
-      <span class="label">DM Serif Display + Manrope</span>
-    </div>
-
-    <div class="font-sample playfair-inter">
-      <h2>¡Nos casamos!</h2>
-      <p>
-        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
-        rodeados de familia, amigos y muchas ganas de brindar.
-      </p>
-      <span class="label">Playfair Display + Inter</span>
-    </div>
-
-        <div class="font-sample fraunces">
-      <h2>¡Nos casamos!</h2>
-      <p>
-        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
-        rodeados de familia, amigos y muchas ganas de brindar.
-      </p>
-      <span class="label">Fraunces + Inter</span>
-    </div>
-    
-    <div class="font-sample libre">
-      <h2>¡Nos casamos!</h2>
-      <p>
-        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
-        rodeados de familia, amigos y muchas ganas de brindar.
-      </p>
-      <span class="label">Libre Baskerville (todo)</span>
-    </div>
-    
-    <div class="font-sample cormorant-infant">
-      <h2>¡Nos casamos!</h2>
-      <p>
-        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
-        rodeados de familia, amigos y muchas ganas de brindar.
-      </p>
-      <span class="label">Cormorant Infant + Inter</span>
-    </div>
-    
-    <div class="font-sample lora">
-      <h2>¡Nos casamos!</h2>
-      <p>
-        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
-        rodeados de familia, amigos y muchas ganas de brindar.
-      </p>
-      <span class="label">Lora (todo)</span>
-    </div>
-    
-    <div class="font-sample bodoni">
-      <h2>¡Nos casamos!</h2>
-      <p>
-        Y queremos celebrarlo contigo. Guarda la fecha y acompáñanos en un día muy especial,
-        rodeados de familia, amigos y muchas ganas de brindar.
-      </p>
-      <span class="label">Bodoni Moda + Inter</span>
-    </div>
-
-    <section id="script-comparison">
-  <div class="container">
-
-    <div class="script-sample great-vibes">
-      <h2>Belén y Javier</h2>
-      <div class="date">05 · 09 · 2026</div>
-      <p>Y queremos celebrarlo contigo.</p>
-      <span class="label">Great Vibes</span>
-    </div>
-
-    <div class="script-sample allura">
-      <h2>Belén y Javier</h2>
-      <div class="date">05 · 09 · 2026</div>
-      <p>Y queremos celebrarlo contigo.</p>
-      <span class="label">Allura</span>
-    </div>
-
-    <div class="script-sample alex-brush">
-      <h2>Belén y Javier</h2>
-      <div class="date">05 · 09 · 2026</div>
-      <p>Y queremos celebrarlo contigo.</p>
-      <span class="label">Alex Brush</span>
-    </div>
-
-    <div class="script-sample parisienne">
-      <h2>Belén y Javier</h2>
-      <div class="date">05 · 09 · 2026</div>
-      <p>Y queremos celebrarlo contigo.</p>
-      <span class="label">Parisienne</span>
-    </div>
-
-    <div class="script-sample pinyon">
-      <h2>Belén y Javier</h2>
-      <div class="date">05 · 09 · 2026</div>
-      <p>Y queremos celebrarlo contigo.</p>
-      <span class="label">Pinyon Script</span>
-    </div>
-
-  </div>
-</section>
-
-
-  </div>
-</section>
-
+  </section>
 
   <main>
-    <!-- Cuenta atrás pasa a estar “después” del hero (ya al empezar a scrollear) -->
     <section id="cuenta-atras">
       <div class="container">
         <div class="card reveal">
@@ -965,7 +716,8 @@
           <h2>La ceremonia</h2>
           <p>
             <strong>Real Basílica de Nuestra Señora de Atocha</strong><br>
-            Av de la Ciudad de Barcelona, 1 <br>28014 · Madrid
+            Av. de la Ciudad de Barcelona, 1<br>
+            28014 · Madrid
           </p>
           <p class="muted">Hora: <strong>18:00</strong></p>
 
@@ -982,10 +734,16 @@
       <div class="container grid grid-2">
         <div class="card reveal">
           <h2>La celebración</h2>
-          <p><strong>Real Fábrica de Tapices</strong><br>Entrada por Calle de Vandergoten, 1<br>28014 · Madrid</p>
+          <p>
+            <strong>Real Fábrica de Tapices</strong><br>
+            Entrada por Calle de Vandergoten, 1<br>
+            28014 · Madrid
+          </p>
           <p class="muted">Hora: <strong>19:00</strong></p>
           <div class="grid">
-            <a class="btn" href="https://www.google.com/maps?q=Real+F%C3%A1brica+de+Tapices+Madrid" target="_blank" rel="noopener">Abrir en Google Maps</a>
+            <a class="btn" href="https://www.google.com/maps?q=Real+F%C3%A1brica+de+Tapices+Madrid" target="_blank" rel="noopener">
+              Abrir en Google Maps
+            </a>
           </div>
         </div>
       </div>
@@ -1068,7 +826,8 @@
             <summary>Ver cuenta bancaria</summary>
             <div class="iban-content">
               <p>
-                <strong>IBAN:</strong> <code id="iban">ES55 0081 2716 9200 2914 3433</code>
+                <strong>IBAN:</strong>
+                <code id="iban">ES55 0081 2716 9200 2914 3433</code>
                 <button class="btn btn-outline" id="copy-iban" type="button">Copiar</button>
               </p>
               <p class="muted" id="copy-msg" role="status" aria-live="polite"></p>
@@ -1113,6 +872,19 @@
   </footer>
 
   <script>
+    // Overlay invitación
+    const inviteOverlay = document.getElementById('invite-overlay');
+    const openInviteBtn = document.getElementById('open-invite');
+
+    openInviteBtn?.addEventListener('click', () => {
+      inviteOverlay.classList.add('hidden');
+      inviteOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = 'auto';
+    });
+
+    // Evita scroll mientras el overlay está abierto
+    document.body.style.overflow = 'hidden';
+
     // Cuenta atrás
     const WEDDING_ISO = '2026-09-05T18:00:00+02:00';
 
@@ -1136,16 +908,22 @@
       mEl.textContent = String(m).padStart(2,'0');
       sEl.textContent = String(s).padStart(2,'0');
     }
-    tick(); setInterval(tick, 1000);
+
+    tick();
+    setInterval(tick, 1000);
 
     // Copiar IBAN
-    const btn = document.getElementById('copy-iban');
+    const copyIbanBtn = document.getElementById('copy-iban');
     const iban = document.getElementById('iban')?.textContent || '';
-    const msg = document.getElementById('copy-msg');
+    const copyMsg = document.getElementById('copy-msg');
 
-    btn?.addEventListener('click', async ()=> {
-      try { await navigator.clipboard.writeText(iban); msg.textContent = 'IBAN copiado ✅'; }
-      catch(e){ msg.textContent = 'No se pudo copiar. Puedes hacerlo a mano.'; }
+    copyIbanBtn?.addEventListener('click', async ()=> {
+      try {
+        await navigator.clipboard.writeText(iban);
+        copyMsg.textContent = 'IBAN copiado ✅';
+      } catch(e){
+        copyMsg.textContent = 'No se pudo copiar. Puedes hacerlo a mano.';
+      }
     });
 
     // Aparición suave
@@ -1157,6 +935,7 @@
         }
       });
     },{threshold:.1});
+
     document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
 
     // Menú móvil
@@ -1177,7 +956,7 @@
       });
     });
 
-    // RSVP: si no has puesto endpoint (action="#"), mostramos un "gracias" local
+    // RSVP local si action="#"
     const rsvpForm = document.getElementById('rsvp-form');
     const rsvpSuccess = document.getElementById('rsvp-success');
 
@@ -1214,35 +993,9 @@
       "@type": "Person",
       "name": "Belén y Javier"
     },
-    "image": ["/img/atocha-cari2.png"],
+    "image": ["/img/iglesia-cabecera.jpg"],
     "description": "Información de la boda: horarios, lugar, confirmación de asistencia y preguntas frecuentes."
   }
   </script>
-
-  <script>
-  const overlay = document.getElementById('invite-overlay');
-  const btn = document.getElementById('open-invite');
-  const video = document.getElementById('envelope-video');
-
-  btn.addEventListener('click', async () => {
-    overlay.classList.add('playing');
-
-    // Intenta reproducir (en móvil necesita gesto: el click sirve)
-    try {
-      video.currentTime = 0;
-      await video.play();
-    } catch (e) {
-      // Si falla por política del navegador, mostramos alternativa:
-      overlay.classList.remove('playing');
-      alert('No se pudo reproducir el vídeo automáticamente. Prueba de nuevo o revisa el formato del vídeo.');
-    }
-  });
-
-  video.addEventListener('ended', () => {
-    overlay.classList.add('done');
-    // opcional: quitarlo del DOM del todo
-    setTimeout(() => overlay.remove(), 500);
-  });
-</script>
 </body>
 </html>
