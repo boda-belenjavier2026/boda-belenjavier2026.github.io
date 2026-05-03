@@ -13,9 +13,6 @@
   <meta property="og:image" content="/img/atocha-cari-def.png" />
   <meta property="og:locale" content="es_ES" />
 
-  <!-- Iconos Lucide -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Fuente personalizada The Seasons (debes subirla a tu proyecto) -->
@@ -421,64 +418,49 @@
       box-shadow:none;
     }
 
-    /* Programa del día — timeline editorial */
+    /* Programa del día — iconos personalizados */
     .programa-lista{
       position:relative;
       display:flex;
       flex-direction:column;
-      gap:26px;
-      max-width:560px;
-      margin:40px auto 0;
-      align-items:center;
-    }
-
-    .programa-lista::before{
-      content:"";
-      position:absolute;
-      top:30px;
-      bottom:30px;
-      left:50%;
-      transform:translateX(-50%);
-      width:1px;
-      background:rgba(58,143,122,.2);
-      z-index:0;
+      gap:22px;
+      max-width:600px;
+      margin:34px auto 0;
+      align-items:stretch;
     }
 
     .programa-item{
-      position:relative;
-      display:flex;
-      flex-direction:column;
+      display:grid;
+      grid-template-columns:58px 1fr;
       align-items:center;
-      gap:10px;
-      text-align:center;
+      gap:18px;
       width:100%;
-      z-index:1;
+      max-width:560px;
+      margin:0 auto;
+      text-align:left;
     }
 
     .programa-icono{
-      width:52px;
-      height:52px;
+      width:54px;
+      height:54px;
       border-radius:50%;
-      border:1px solid rgba(58,143,122,.25);
-      background:rgba(255,255,255,.9);
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(58,143,122,.20);
       display:flex;
       align-items:center;
       justify-content:center;
-      color:#2e5f53;
       box-shadow:0 8px 20px rgba(0,0,0,.04);
-      transition:all .25s ease;
+      overflow:hidden;
     }
 
-    .programa-icono svg{
-      width:24px;
-      height:24px;
-      stroke-width:1.4;
-      color:#2e5f53;
+    .programa-icono img{
+      width:34px;
+      height:34px;
+      object-fit:contain;
       display:block;
     }
 
     .programa-texto{
-      text-align:left;
       min-width:0;
     }
 
@@ -497,37 +479,25 @@
       color:var(--muted);
     }
 
-    .programa-item:hover .programa-icono{
-      transform:scale(1.04);
-      background:rgba(255,255,255,.98);
-      box-shadow:0 10px 22px rgba(0,0,0,.055);
-    }
-
     @media (max-width:560px){
       .programa-lista{
         max-width:360px;
         gap:20px;
       }
 
-      .programa-lista::before{
-        left:21px;
-        top:22px;
-        bottom:22px;
-      }
-
       .programa-item{
-        grid-template-columns:44px 1fr;
+        grid-template-columns:48px 1fr;
         gap:14px;
       }
 
       .programa-icono{
-        width:42px;
-        height:42px;
+        width:46px;
+        height:46px;
       }
 
-      .programa-icono svg{
-        width:18px;
-        height:18px;
+      .programa-icono img{
+        width:29px;
+        height:29px;
       }
 
       .programa-texto strong{font-size:18px;}
@@ -807,7 +777,7 @@
 
             <div class="programa-item">
               <div class="programa-icono" aria-hidden="true">
-                <i data-lucide="landmark"></i>
+                <img src="/img/icons/ceremonia.png" alt="">
               </div>
               <div class="programa-texto">
                 <strong>18:00 — Ceremonia</strong>
@@ -817,7 +787,7 @@
 
             <div class="programa-item">
               <div class="programa-icono" aria-hidden="true">
-                <i data-lucide="glass-water"></i>
+                <img src="/img/icons/aperitivos.png" alt="">
               </div>
               <div class="programa-texto">
                 <strong>19:30 — Aperitivos</strong>
@@ -827,7 +797,7 @@
 
             <div class="programa-item">
               <div class="programa-icono" aria-hidden="true">
-                <i data-lucide="utensils-crossed"></i>
+                <img src="/img/icons/cena.png" alt="">
               </div>
               <div class="programa-texto">
                 <strong>21:30 — Cena</strong>
@@ -837,7 +807,7 @@
 
             <div class="programa-item">
               <div class="programa-icono" aria-hidden="true">
-                <i data-lucide="music-2"></i>
+                <img src="/img/icons/baile.png" alt="">
               </div>
               <div class="programa-texto">
                 <strong>23:30 — Baile y barra libre</strong>
@@ -1108,9 +1078,6 @@
       }
     });
   
-
-    // Activar iconos Lucide
-    lucide.createIcons();
   </script>
 
   <script type="application/ld+json">
