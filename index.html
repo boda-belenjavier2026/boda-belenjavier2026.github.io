@@ -420,24 +420,29 @@
 
     /* Timeline */
     .timeline{
-      display:grid;
-      gap:26px;
-      max-width:760px;
-      margin:26px auto 0;
+      display:flex;
+      flex-direction:column;
+      gap:28px;
+      max-width:720px;
+      margin:30px auto 0;
+      align-items:stretch;
     }
 
     .tl-item{
-      display:grid;
-      grid-template-columns:72px 1fr;
+      display:flex;
       align-items:center;
-      gap:22px;
+      justify-content:flex-start;
+      gap:24px;
       width:100%;
+      margin:0;
+      padding:0;
       text-align:left;
     }
 
     .tl-icon{
-      width:64px;
-      height:64px;
+      width:66px;
+      height:66px;
+      min-width:66px;
       border-radius:50%;
       border:1px solid rgba(58,143,122,.28);
       background:rgba(255,255,255,.72);
@@ -458,18 +463,23 @@
       fill:none;
     }
 
+    .tl-content{
+      flex:1;
+      min-width:0;
+    }
+
     .tl-content strong{
       display:block;
-      font-size:clamp(22px, 2.8vw, 28px);
-      line-height:1.05;
+      font-size:clamp(22px, 2.6vw, 30px);
+      line-height:1.08;
       font-weight:600;
       color:var(--ink);
     }
 
     .tl-content .muted{
       margin-top:4px;
-      font-size:clamp(19px, 2.2vw, 24px);
-      line-height:1.1;
+      font-size:clamp(18px, 2.1vw, 25px);
+      line-height:1.15;
     }
 
     .tl-item:hover .tl-icon{
@@ -481,21 +491,30 @@
       .timeline{
         gap:22px;
         max-width:420px;
+        margin-top:24px;
       }
 
       .tl-item{
-        grid-template-columns:58px 1fr;
         gap:16px;
       }
 
       .tl-icon{
         width:54px;
         height:54px;
+        min-width:54px;
       }
 
       .tl-icon svg{
         width:25px;
         height:25px;
+      }
+
+      .tl-content strong{
+        font-size:22px;
+      }
+
+      .tl-content .muted{
+        font-size:19px;
       }
     }
 
@@ -767,9 +786,8 @@
       <div class="container">
         <div class="card reveal">
           <h2>Programa del día</h2>
-          <div class="timeline">
 
-            <!-- CEREMONIA -->
+          <div class="timeline">
             <div class="tl-item">
               <div class="tl-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
@@ -783,7 +801,9 @@
               <div class="tl-content">
                 <strong>18:00 — Ceremonia</strong>
                 <div class="muted">Real Basílica de Nuestra Señora de Atocha</div>
-        <!-- APERITIVOS -->
+              </div>
+            </div>
+
             <div class="tl-item">
               <div class="tl-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
@@ -798,10 +818,7 @@
                 <div class="muted">Real Fábrica de Tapices</div>
               </div>
             </div>
-          
-            <!-- CENA -->            </div>
-          
-            <!-- CENA -->
+
             <div class="tl-item">
               <div class="tl-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
@@ -816,8 +833,7 @@
                 <div class="muted">Salón principal</div>
               </div>
             </div>
-          
- <!-- BAILE -->
+
             <div class="tl-item">
               <div class="tl-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
@@ -831,11 +847,10 @@
                 <strong>23:30 — Baile y barra libre</strong>
               </div>
             </div>
-          
           </div>
         </div>
       </div>
-    </section> </section>
+    </section>
 
     <section id="ceremonia">
       <div class="container grid grid-2">
