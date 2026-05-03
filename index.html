@@ -18,18 +18,13 @@
   <!-- Fuente personalizada The Seasons (debes subirla a tu proyecto) -->
   <style>
     @font-face {
-          font-family: 'TheSeasons';
-          src: url('./fonts/TheSeasons-Regular.woff2') format('woff2');
-          font-weight: 400;
-          font-style: normal;
-          font-display: swap;
-        }
+      font-family: 'TheSeasons';
+      src: url('/fonts/TheSeasons-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
   </style>
 
-  html, body {
-  font-family: 'TheSeasons', Georgia, serif;
-  }
-  
   <style>
     :root{
       --bg: #fffdf8;
@@ -425,48 +420,83 @@
 
     /* Timeline */
     .timeline{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      position:relative;
+      display:grid;
+      gap:26px;
+      max-width:760px;
+      margin:26px auto 0;
     }
 
     .tl-item{
-      position:relative;
-      padding-left:0;
-      margin:16px 0;
-      text-align:center;
-      max-width:760px;
+      display:grid;
+      grid-template-columns:72px 1fr;
+      align-items:center;
+      gap:22px;
       width:100%;
-      margin-left:auto;
-      margin-right:auto;
+      text-align:left;
     }
 
     .tl-icon{
-      width:48px;
-      height:48px;
+      width:64px;
+      height:64px;
       border-radius:50%;
-      border:1px solid rgba(58,143,122,.25);
-      background:rgba(255,255,255,.85);
+      border:1px solid rgba(58,143,122,.28);
+      background:rgba(255,255,255,.72);
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 6px 16px rgba(0,0,0,.05);
-      flex-shrink:0;
+      box-shadow:0 10px 24px rgba(0,0,0,.06);
+      transition:transform .22s ease, box-shadow .22s ease;
     }
     
     .tl-icon svg{
-      width:22px;
-      height:22px;
+      width:30px;
+      height:30px;
       stroke:#2e5f53;
-      stroke-width:1.6;
+      stroke-width:1.35;
+      stroke-linecap:round;
+      stroke-linejoin:round;
       fill:none;
     }
 
+    .tl-content strong{
+      display:block;
+      font-size:clamp(22px, 2.8vw, 28px);
+      line-height:1.05;
+      font-weight:600;
+      color:var(--ink);
+    }
+
+    .tl-content .muted{
+      margin-top:4px;
+      font-size:clamp(19px, 2.2vw, 24px);
+      line-height:1.1;
+    }
+
     .tl-item:hover .tl-icon{
-      transform:translateY(-2px);
-      transition:all .2s ease;
-      box-shadow:0 10px 22px rgba(0,0,0,.08);
+      transform:translateY(-2px) scale(1.03);
+      box-shadow:0 14px 28px rgba(0,0,0,.09);
+    }
+
+    @media (max-width: 560px){
+      .timeline{
+        gap:22px;
+        max-width:420px;
+      }
+
+      .tl-item{
+        grid-template-columns:58px 1fr;
+        gap:16px;
+      }
+
+      .tl-icon{
+        width:54px;
+        height:54px;
+      }
+
+      .tl-icon svg{
+        width:25px;
+        height:25px;
+      }
     }
 
     /* FAQ */
@@ -741,27 +771,26 @@
 
             <!-- CEREMONIA -->
             <div class="tl-item">
-              <div class="tl-icon">
+              <div class="tl-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <path d="M3 10 L12 3 L21 10"></path>
-                  <path d="M5 10 V20 H19 V10"></path>
-                  <path d="M9 20 V14 H15 V20"></path>
-                  <path d="M12 3 V7"></path>
+                  <path d="M4 10.5 12 4l8 6.5"></path>
+                  <path d="M6 10v9h12v-9"></path>
+                  <path d="M10 19v-5h4v5"></path>
+                  <path d="M12 4v3"></path>
+                  <path d="M9.5 7h5"></path>
                 </svg>
               </div>
               <div class="tl-content">
                 <strong>18:00 — Ceremonia</strong>
                 <div class="muted">Real Basílica de Nuestra Señora de Atocha</div>
-              </div>
-            </div>
-          
-            <!-- APERITIVOS -->
+        <!-- APERITIVOS -->
             <div class="tl-item">
-              <div class="tl-icon">
+              <div class="tl-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <path d="M7 3 H17 L14 12 H10 Z"></path>
-                  <path d="M12 12 V21"></path>
-                  <path d="M9 21 H15"></path>
+                  <path d="M8 3h8l-2 8h-4L8 3Z"></path>
+                  <path d="M12 11v8"></path>
+                  <path d="M9 21h6"></path>
+                  <path d="M7 7h10"></path>
                 </svg>
               </div>
               <div class="tl-content">
@@ -770,15 +799,16 @@
               </div>
             </div>
           
+            <!-- CENA -->            </div>
+          
             <!-- CENA -->
             <div class="tl-item">
-              <div class="tl-icon">
+              <div class="tl-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <path d="M6 3 V11"></path>
-                  <path d="M10 3 V11"></path>
-                  <path d="M6 7 H10"></path>
-                  <path d="M14 3 V21"></path>
-                  <path d="M14 3 C17 3,18 6,14 8"></path>
+                  <path d="M7 3v18"></path>
+                  <path d="M5 3v6c0 1.5.9 2.5 2 2.5s2-1 2-2.5V3"></path>
+                  <path d="M15 3v18"></path>
+                  <path d="M15 3c3 1 4 4 4 7 0 2.5-1.2 4-4 4"></path>
                 </svg>
               </div>
               <div class="tl-content">
@@ -787,12 +817,14 @@
               </div>
             </div>
           
-            <!-- BAILE -->
+ <!-- BAILE -->
             <div class="tl-item">
-              <div class="tl-icon">
+              <div class="tl-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <path d="M9 18 V5 L19 9"></path>
-                  <circle cx="7" cy="18" r="2"></circle>
+                  <path d="M9 18V5l10 3v13"></path>
+                  <circle cx="7" cy="18" r="2.5"></circle>
+                  <circle cx="17" cy="21" r="2.5"></circle>
+                  <path d="M9 8l10 3"></path>
                 </svg>
               </div>
               <div class="tl-content">
@@ -801,8 +833,9 @@
             </div>
           
           </div>
+        </div>
       </div>
-    </section>
+    </section> </section>
 
     <section id="ceremonia">
       <div class="container grid grid-2">
