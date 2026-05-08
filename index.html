@@ -706,10 +706,61 @@
       text-align:center;
     }
 /* =========================================================
-   CORRECCIÓN FINAL PROGRAMA + ANCHOS
+   ANCHO ÚNICO DE TODA LA WEB + CORRECCIÓN MÓVIL FOTO PAREJA
    ========================================================= */
 
-/* Mismo ancho visual para secciones */
+:root{
+  --contentw: 760px;
+}
+
+/* Evita cualquier desbordamiento horizontal en móvil */
+html,
+body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+/* La frase principal marca el ancho visual */
+.hero-content p,
+.intro-text{
+  width:100%;
+  max-width:var(--contentw);
+}
+
+/* Foto de Belén y Javi corregida */
+.couple-photo-wrap{
+  width:100%;
+  max-width:420px;
+  margin:28px auto 0;
+  padding:0;
+}
+
+.couple-photo{
+  width:100%;
+  max-width:100%;
+  height:auto;
+  display:block;
+  margin:0 auto;
+  border-radius:20px;
+}
+
+/* Todas las secciones principales usan el mismo ancho */
+#programa .container,
+#ceremonia .container,
+#celebracion .container,
+#rsvp .container,
+#faq .container,
+#regalos .container{
+  width:100%;
+  max-width:calc(var(--contentw) + 40px);
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:20px;
+  padding-right:20px;
+}
+
+/* Todas las tarjetas internas tienen exactamente el mismo ancho */
 #programa .card,
 #ceremonia .card,
 #celebracion .card,
@@ -717,48 +768,72 @@
 #faq .card,
 #regalos .card{
   width:100%;
-  max-width:760px;
+  max-width:var(--contentw);
   margin-left:auto;
   margin-right:auto;
 }
 
-/* Contenedores de secciones principales */
-#programa .container,
-#ceremonia .container,
-#celebracion .container,
-#rsvp .container,
-#faq .container,
-#regalos .container{
-  max-width:800px;
+/* Textos de secciones con el mismo ancho */
+#ceremonia p,
+#celebracion p,
+#rsvp p,
+#faq p,
+#regalos p{
+  width:100%;
+  max-width:var(--contentw);
+  margin-left:auto;
+  margin-right:auto;
 }
 
-/* RSVP */
+/* Formularios: ya no pueden ser más anchos que el resto */
 #rsvp .form{
   width:100%;
-  max-width:760px;
+  max-width:var(--contentw);
+  margin-left:auto;
+  margin-right:auto;
 }
 
+#rsvp .field,
 #rsvp input[type="text"],
 #rsvp input[type="tel"],
 #rsvp textarea{
-  max-width:none;
   width:100%;
+  max-width:100%;
 }
 
-/* Regalo */
+/* Caja de regalos con el mismo ancho */
 #regalos .iban-box{
   width:100%;
-  max-width:760px;
+  max-width:var(--contentw);
+  margin-left:auto;
+  margin-right:auto;
 }
 
-#regalos p{
-  max-width:760px;
+/* Fotos de ceremonia y celebración con el mismo ancho */
+.section-photo{
+  width:100%;
+  max-width:var(--contentw);
+  margin:28px auto 0;
+  border-radius:22px;
+  overflow:hidden;
 }
 
-/* =========================================================
-   PROGRAMA DEL DÍA — CENTRADO VISUAL REAL
-   ========================================================= */
+.section-photo img{
+  width:100%;
+  max-width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+  border-radius:22px;
+}
 
+/* Evita que las grid antiguas fuercen anchos raros */
+#ceremonia .grid-2,
+#celebracion .grid-2{
+  display:block;
+}
+
+/* Programa centrado visualmente */
 #programa .programa-lista{
   width:fit-content;
   max-width:100%;
@@ -769,7 +844,6 @@
   gap:26px;
 }
 
-/* Cada fila tiene solo el ancho que necesita */
 #programa .programa-item{
   width:auto;
   max-width:none;
@@ -782,14 +856,12 @@
   text-align:left;
 }
 
-/* Iconos */
 #programa .programa-icono{
   width:54px;
   height:54px;
   justify-self:center;
 }
 
-/* Texto */
 #programa .programa-texto{
   width:auto;
   min-width:0;
@@ -803,6 +875,31 @@
 
 /* Móvil */
 @media (max-width:560px){
+  :root{
+    --contentw: 100%;
+  }
+
+  .hero-content{
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .couple-photo-wrap{
+    width:100%;
+    max-width:320px;
+    margin-top:24px;
+  }
+
+  .section-photo{
+    max-width:100%;
+    margin-top:24px;
+    border-radius:18px;
+  }
+
+  .section-photo img{
+    border-radius:18px;
+  }
+
   #programa .programa-lista{
     width:100%;
     max-width:360px;
@@ -824,6 +921,16 @@
   #programa .programa-texto strong,
   #programa .programa-texto .muted{
     white-space:normal;
+  }
+
+  #regalos .iban-content p{
+    display:grid;
+    gap:10px;
+    text-align:center;
+  }
+
+  #copy-iban{
+    width:100%;
   }
 }
   </style>
@@ -869,9 +976,9 @@
         <div class="date-pill" id="wedding-date-pill">Sábado, 05 de septiembre de 2026 · 18:00</div>
 
         <!-- FOTO PAREJA -->
-        <div style="margin-top:28px;">
-          <!-- Sustituye el src por vuestra foto -->
-          <img src="/img/fotobelenjavi.jpeg" alt="Belén y Javier" style="max-width:420px; margin:0 auto; border-radius:20px;">
+        <div class="couple-photo-wrap">
+  <!-- Sustituye el src por vuestra foto -->
+          <img class="couple-photo" src="/img/fotobelenjavi.jpeg" alt="Belén y Javier">
         </div>
       </div>
     </div>
